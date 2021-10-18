@@ -1,0 +1,17 @@
+version: "3.4"
+
+services:
+  bengkelbagus-frontend:
+    image: bengkelbagus-frontend
+    build:
+      context: .
+      dockerfile: ./Dockerfile
+      args:
+        PORT: 1234
+        NEXT_PUBLIC_BACKEND_URL: ""
+        NEXT_PUBLIC_FRONTEND_URL: ""
+    environment:
+      NODE_ENV: production
+      TOKEN: ""
+    ports:
+      - 1234:1234

@@ -1,0 +1,10 @@
+{
+  "compilerOptions": {
+    "baseUrl": ".",
+    "paths": {
+      "@/Layout/*": ["components/layout/*"],
+      "@/Reusables/*": ["components/reusables/*"],
+      "@/Utils/*": ["utils/*"]
+    }
+  }
+}
