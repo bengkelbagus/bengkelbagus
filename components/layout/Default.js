@@ -1,6 +1,7 @@
 import Head from "next/head";
 import { Box } from "@chakra-ui/react";
 import { AnimatePresence, motion } from "framer-motion";
+import Footer from "./Footer";
 
 const LayoutDefault = ({ children, title, heads }) => {
   return (
@@ -26,6 +27,7 @@ const LayoutDefault = ({ children, title, heads }) => {
           <Box mt="4rem">{children}</Box>
         </motion.div>
       </AnimatePresence>
+      <Footer />
     </>
   );
 };

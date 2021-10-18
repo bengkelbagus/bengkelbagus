@@ -6,7 +6,7 @@ import "@fontsource/poppins/500.css";
 import "@fontsource/poppins/600.css";
 import "@fontsource/poppins/700.css";
 import { ChakraProvider, extendTheme } from "@chakra-ui/react";
-import { useEffect } from "react";
+import Head from "next/head";
 
 const theme = extendTheme({
   colors: {
@@ -29,26 +29,18 @@ const theme = extendTheme({
 });
 
 function MyApp({ Component, pageProps }) {
-  useEffect(() => {
-    if ("serviceWorker" in navigator) {
-      navigator.serviceWorker.register("/sw.js").then(
-        function (registration) {
-          console.log(
-            "Service Worker registration successful with scope: ",
-            registration.scope
-          );
-        },
-        function (err) {
-          console.log("Service Worker registration failed: ", err);
-        }
-      );
-    }
-  }, []);
-
   return (
-    <ChakraProvider theme={theme}>
-      <Component {...pageProps} />
-    </ChakraProvider>
+    <>
+      <Head>
+        <meta
+          name="viewport"
+          content="minimum-scale=1, initial-scale=1, width=device-width, shrink-to-fit=no, user-scalable=no, viewport-fit=cover"
+        />
+      </Head>
+      <ChakraProvider theme={theme}>
+        <Component {...pageProps} />
+      </ChakraProvider>
+    </>
   );
 }
 

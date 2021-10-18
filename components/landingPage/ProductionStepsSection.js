@@ -1,4 +1,6 @@
+import { trimString } from "@/Utils/Helper";
 import {
+  Box,
   Divider,
   Grid,
   GridItem,
@@ -30,40 +32,41 @@ const ProductionStepsSection = () => {
   ];
 
   return (
-    <Grid minH="40vh" gridTemplateColumns="repeat(3, 1fr)">
-      {productionSteps.map((data, index) => (
-        <GridItem
-          minH="350px"
-          height="100%"
-          backgroundColor="#222"
-          key={index}
-          p="1rem"
-        >
-          <VStack
-            height="100%"
-            justifyContent="flex-end"
-            alignItems="flex-start"
-            color="white"
-          >
+    <Box
+      backgroundColor="blackAlpha.900"
+      display="flex"
+      justifyContent="center"
+      alignItems="center"
+    >
+      <Grid width="80vw" minH="40vh" gridTemplateColumns="repeat(3, 1fr)">
+        {productionSteps.map((data, index) => (
+          <GridItem minH="350px" height="100%" key={index} p="1rem">
             <VStack
-              minH="150px"
+              height="100%"
+              justifyContent="flex-end"
               alignItems="flex-start"
-              justifyContent="flex-start"
+              color="white"
             >
-              <Heading as="h4" size="md">
-                {data.title}
-              </Heading>
-              <Divider
-                borderColor="yellow.400"
-                borderWidth="2px"
-                width="100px"
-              />
-              <Text>{data.description}</Text>
+              <VStack
+                minH="150px"
+                alignItems="flex-start"
+                justifyContent="flex-start"
+              >
+                <Heading as="h4" size="md">
+                  {data.title}
+                </Heading>
+                <Divider
+                  borderColor="yellow.400"
+                  borderWidth="2px"
+                  width="100px"
+                />
+                <Text>{trimString(data.description, 120)}</Text>
+              </VStack>
             </VStack>
-          </VStack>
-        </GridItem>
-      ))}
-    </Grid>
+          </GridItem>
+        ))}
+      </Grid>
+    </Box>
   );
 };
 
