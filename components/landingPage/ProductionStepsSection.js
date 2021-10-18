@@ -8,28 +8,38 @@ import {
   Text,
   VStack,
 } from "@chakra-ui/layout";
+import useWindowSize from "@/Hooks/UseWindowSize";
 
 const ProductionStepsSection = () => {
+  const { isTabletDisplay, isLaptopDisplay } = useWindowSize();
+
   const productionSteps = [
     {
       title: "Design & Building",
       description:
         "Sample text. Lorem ipsum dolor sit amet, consectetur adipiscing elit nullam nunc",
-      bgImage: "/images/",
+      bgImage: "/images/production-1.png",
     },
     {
       title: "Construction Renovation",
       description:
         "Sample text. Lorem ipsum dolor sit amet, consectetur adipiscing elit nullam nunc",
-      bgImage: "/images/",
+      bgImage: "/images/production-2.png",
     },
     {
       title: "Finishing Interiors",
       description:
         "Sample text. Lorem ipsum dolor sit amet, consectetur adipiscing elit nullam nunc",
-      bgImage: "/images/",
+      bgImage: "/images/production-3.png",
     },
   ];
+
+  console.log(
+    trimString(
+      "Sample text. Lorem ipsum dolor sit amet, consectetur adipiscing elit nullam nunc",
+      20
+    )
+  );
 
   return (
     <Box
@@ -38,9 +48,23 @@ const ProductionStepsSection = () => {
       justifyContent="center"
       alignItems="center"
     >
-      <Grid width="80vw" minH="40vh" gridTemplateColumns="repeat(3, 1fr)">
+      <Grid
+        width={isLaptopDisplay ? "100%" : "80vw"}
+        minH="40vh"
+        gridTemplateColumns={isTabletDisplay ? "1fr" : "repeat(3, 1fr)"}
+      >
         {productionSteps.map((data, index) => (
-          <GridItem minH="350px" height="100%" key={index} p="1rem">
+          <GridItem
+            minH="350px"
+            height="100%"
+            key={index}
+            p="1rem"
+            backgroundImage={data.bgImage}
+            backgroundBlendMode="overlay"
+            backgroundSize="cover"
+            backgroundRepeat="no-repeat"
+            backgroundColor="#222222dd"
+          >
             <VStack
               height="100%"
               justifyContent="flex-end"
@@ -60,7 +84,7 @@ const ProductionStepsSection = () => {
                   borderWidth="2px"
                   width="100px"
                 />
-                <Text>{trimString(data.description, 120)}</Text>
+                <Text>{trimString(data.description, 200)}</Text>
               </VStack>
             </VStack>
           </GridItem>

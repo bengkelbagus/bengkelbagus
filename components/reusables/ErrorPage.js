@@ -5,11 +5,18 @@ import Link from "next/link";
 
 const ErrorPage = () => {
   return (
-    <Box minH="70vh" display="flex" justifyContent="center" alignItems="center">
+    <Box
+      minH="100vh"
+      backgroundColor="blackAlpha.900"
+      color="white"
+      display="flex"
+      justifyContent="center"
+      alignItems="center"
+    >
       <VStack>
         <Heading>Kamu Tersesat!</Heading>
         <Link href="/" passHref>
-          <Button colorScheme="teal">Kembali ke beranda</Button>
+          <Button colorScheme="yellow">Kembali ke beranda</Button>
         </Link>
       </VStack>
     </Box>

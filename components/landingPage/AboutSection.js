@@ -10,6 +10,7 @@ const AboutSection = () => {
       display="flex"
       alignItems="flex-start"
       flexWrap="wrap"
+      id="about"
     >
       <VStack flex="1" minW="200px" alignItems="flex-start" gridGap="1rem">
         <VStack alignItems="flex-start">

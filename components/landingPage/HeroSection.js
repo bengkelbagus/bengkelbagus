@@ -1,18 +1,25 @@
+import useWindowSize from "@/Hooks/UseWindowSize";
 import { Button } from "@chakra-ui/button";
 import { Box, Divider, Heading, Text } from "@chakra-ui/layout";
 
 const HeroSection = () => {
+  const { isTabletDisplay } = useWindowSize();
+
   return (
     <Box
       minH="60vh"
-      backgroundColor="#22222212"
-      backgroundImage="/images/"
+      backgroundColor="#222222dd"
+      backgroundImage="/images/hero-1.png"
+      backgroundBlendMode="overlay"
+      backgroundSize="cover"
+      backgroundRepeat="no-repeat"
+      color="white"
       display="flex"
       justifyContent="center"
       alignItems="center"
       p="10%"
     >
-      <Box flex="0.7">
+      <Box flex={isTabletDisplay ? "1" : "0.7"}>
         <Heading as="h1" size="xl">
           We are Builders
         </Heading>
@@ -31,7 +38,7 @@ const HeroSection = () => {
           Our Portofolio
         </Button>
       </Box>
-      <Box flex="0.3"></Box>
+      {!isTabletDisplay && <Box flex="0.3"></Box>}
     </Box>
   );
 };

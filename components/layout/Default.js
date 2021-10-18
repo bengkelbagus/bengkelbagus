@@ -2,8 +2,12 @@ import Head from "next/head";
 import { Box } from "@chakra-ui/react";
 import { AnimatePresence, motion } from "framer-motion";
 import Footer from "./Footer";
+import Navbar from "./Navbar";
+import useWindowSize from "@/Hooks/UseWindowSize";
 
 const LayoutDefault = ({ children, title, heads }) => {
+  const { isMobileDisplay } = useWindowSize();
+
   return (
     <>
       <Head>
@@ -14,6 +18,18 @@ const LayoutDefault = ({ children, title, heads }) => {
         />
         {heads}
       </Head>
+      <Box
+        position="fixed"
+        top="0"
+        left="0"
+        zIndex="99"
+        width="100%"
+        backgroundColor="black"
+        px={isMobileDisplay ? "1rem" : "10%"}
+        py="1.5rem"
+      >
+        <Navbar />
+      </Box>
       <AnimatePresence
         exitBeforeEnter
         onExitComplete={() => window.scrollTo(0, 0)}

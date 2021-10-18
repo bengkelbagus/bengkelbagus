@@ -20,9 +20,11 @@ const CarouselContainer = styled.div`
 
 const CarouselWrapper = styled.ul`
   grid-gap: 1rem;
+  justify-content: space-around;
 `;
 
 const GlideSlide = styled.li`
+  margin-left: 0 !important;
   margin-right: 0 !important;
 `;
 

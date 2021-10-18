@@ -15,6 +15,15 @@ class MyDocument extends Document {
         <body>
           <Main />
           <NextScript />
+          <script
+            src="//code.tidio.co/xmo62vk11q8ivkkwyluuejxbcsligg2b.js"
+            async
+          ></script>
+          <script
+            id="dsq-count-scr"
+            src="//bengkel-bagus.disqus.com/count.js"
+            async
+          ></script>
         </body>
       </Html>
     );

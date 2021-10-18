@@ -3,7 +3,6 @@ import { Box, Heading, Text } from "@chakra-ui/layout";
 const Footer = () => {
   return (
     <Box
-      minH="20vh"
       backgroundColor="blackAlpha.900"
       p="2%"
       display="flex"
