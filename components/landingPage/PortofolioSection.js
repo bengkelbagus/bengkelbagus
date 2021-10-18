@@ -35,7 +35,8 @@ const PortofolioSection = () => {
   return (
     <Box id="portofolio" minH="60vh" backgroundColor="blackAlpha.900">
       <Box
-        p="10%"
+        px="10%"
+        py="5rem"
         display="flex"
         alignItems="center"
         flexDir="column"
