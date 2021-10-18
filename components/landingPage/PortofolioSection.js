@@ -50,16 +50,10 @@ const PortofolioSection = () => {
         </Heading>
         <Divider borderColor="yellow.400" borderWidth="2px" width="100px" />
       </Box>
-      <Grid
-        marginX="auto"
-        width={isLaptopDisplay ? "auto" : "40vw"}
-        gridTemplateColumns={isMobileDisplay ? "1fr" : "repeat(2, 1fr)"}
-      >
+      <Grid gridTemplateColumns={isMobileDisplay ? "1fr" : "repeat(2, 1fr)"}>
         {imagesPortofolio.map((data, index) => (
           <GridItem key={index}>
-            <AspectRatio ratio={4 / 3}>
-              <Image boxSize="100%" src={data.src} alt={index} />
-            </AspectRatio>
+            <Image boxSize="100%" src={data.src} alt={index} />
           </GridItem>
         ))}
       </Grid>

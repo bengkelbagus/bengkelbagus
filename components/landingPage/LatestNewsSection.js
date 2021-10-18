@@ -37,7 +37,8 @@ const LatestNewsSection = () => {
       display="flex"
       flexDir="column"
       alignItems="center"
-      p="5%"
+      px="5%"
+      py="10vh"
       gridGap="1rem"
     >
       <Heading as="h1" size="lg" color="yellow.400" fontWeight="light">
@@ -48,7 +49,7 @@ const LatestNewsSection = () => {
       </Heading>
       <Divider borderColor="yellow.400" borderWidth="2px" width="150px" />
       <HStack width="100%" mt="3rem">
-        <GliderCarousel>
+        <GliderCarousel isArrow>
           {latestNews.map((data, index) => (
             <CarouselItem key={index}>
               <ArticlesCard

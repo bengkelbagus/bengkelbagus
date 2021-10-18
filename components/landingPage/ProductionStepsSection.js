@@ -49,7 +49,7 @@ const ProductionStepsSection = () => {
       alignItems="center"
     >
       <Grid
-        width={isLaptopDisplay ? "100%" : "80vw"}
+        width="100%"
         minH="40vh"
         gridTemplateColumns={isTabletDisplay ? "1fr" : "repeat(3, 1fr)"}
       >
@@ -58,7 +58,7 @@ const ProductionStepsSection = () => {
             minH="350px"
             height="100%"
             key={index}
-            p="1rem"
+            p="2rem"
             backgroundImage={data.bgImage}
             backgroundBlendMode="overlay"
             backgroundSize="cover"
