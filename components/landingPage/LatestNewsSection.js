@@ -36,7 +36,6 @@ const LatestNewsSection = () => {
       minH="40vh"
       display="flex"
       flexDir="column"
-      alignItems="center"
       px="5%"
       py="10vh"
       gridGap="1rem"
@@ -48,20 +47,18 @@ const LatestNewsSection = () => {
         Latest News
       </Heading>
       <Divider borderColor="yellow.400" borderWidth="2px" width="150px" />
-      <HStack width="100%" mt="3rem">
-        <GliderCarousel isArrow>
-          {latestNews.map((data, index) => (
-            <CarouselItem key={index}>
-              <ArticlesCard
-                image={data.image}
-                title={data.title}
-                date={data.date}
-                description={data.description}
-                isColumn
-              />
-            </CarouselItem>
-          ))}
-        </GliderCarousel>
+      <HStack width="100%" mt="3rem" overflowX="auto" gridGap="1rem">
+        {latestNews.map((data, index) => (
+          <Box key={index} width="240px">
+            <ArticlesCard
+              image={data.image}
+              title={data.title}
+              date={data.date}
+              description={data.description}
+              isColumn
+            />
+          </Box>
+        ))}
       </HStack>
     </Box>
   );

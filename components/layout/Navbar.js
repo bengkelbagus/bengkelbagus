@@ -28,7 +28,7 @@ const Navbar = () => {
   const navigations = [
     {
       name: "about",
-      link: "/about",
+      link: "#about",
     },
     {
       name: "portofolio",
