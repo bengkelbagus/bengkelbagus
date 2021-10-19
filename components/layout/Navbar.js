@@ -27,12 +27,20 @@ const LinkItem = styled.p`
 const Navbar = () => {
   const navigations = [
     {
+      name: "home",
+      link: "/",
+    },
+    {
       name: "about",
       link: "/#about",
     },
     {
       name: "portofolio",
       link: "/#portofolio",
+    },
+    {
+      name: "testimonial",
+      link: "/#testimonial",
     },
     {
       name: "blog",

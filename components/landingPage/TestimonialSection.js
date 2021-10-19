@@ -26,7 +26,13 @@ const TestimonialSection = () => {
   ];
 
   return (
-    <Box minH="60vh" px="5%" p="15vh" backgroundColor="blackAlpha.900">
+    <Box
+      id="testimonial"
+      minH="60vh"
+      px="5%"
+      p="15vh"
+      backgroundColor="blackAlpha.900"
+    >
       <Box
         display="flex"
         alignItems="center"
