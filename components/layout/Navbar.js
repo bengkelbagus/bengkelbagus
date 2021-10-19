@@ -34,6 +34,10 @@ const Navbar = () => {
       name: "portofolio",
       link: "#portofolio",
     },
+    {
+      name: "blog",
+      link: "/blog",
+    },
   ];
 
   return (

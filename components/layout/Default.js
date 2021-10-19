@@ -6,11 +6,14 @@ import Navbar from "./Navbar";
 import useWindowSize from "@/Hooks/UseWindowSize";
 import { useRef, useState } from "react";
 import useEventListener from "@/Hooks/UseEventListener";
+import { useRouter } from "next/router";
 
 const LayoutDefault = ({ children, title, heads }) => {
   const bodyRef = useRef(null);
   const { isLaptopDisplay } = useWindowSize();
   const [scrollY, setScrollY] = useState(0);
+  const router = useRouter();
+  const { pathname } = router;
 
   useEventListener("scroll", () => {
     setScrollY(window.scrollY);
@@ -32,7 +35,9 @@ const LayoutDefault = ({ children, title, heads }) => {
         left="0"
         zIndex="99"
         width="100%"
-        backgroundColor={scrollY > 50 ? "blackAlpha.900" : "transparent"}
+        backgroundColor={
+          scrollY > 50 || pathname !== "/" ? "blackAlpha.900" : "transparent"
+        }
         px={isLaptopDisplay ? "2rem" : "10%"}
         py="1.5rem"
       >

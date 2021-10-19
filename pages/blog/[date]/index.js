@@ -1,12 +1,8 @@
+import LayoutDefault from "@/Layout/Default";
 import ArticlesCard from "@/Reusables/ArticlesCard";
-import {
-  CarouselItem,
-  GliderCarousel,
-} from "@/Reusables/gliderJS/GliderCarousel";
-import { trimString } from "@/Utils/Helper";
-import { Box, Divider, Heading, HStack, Text, VStack } from "@chakra-ui/layout";
+import { Box, Divider, Grid, Heading, VStack } from "@chakra-ui/layout";
 
-const LatestNewsSection = () => {
+const BlogDate = () => {
   const latestNews = [
     {
       image: "test",
@@ -32,39 +28,42 @@ const LatestNewsSection = () => {
   ];
 
   return (
-    <Box
-      minH="40vh"
-      display="flex"
-      flexDir="column"
-      alignItems="center"
-      px="5%"
-      py="10vh"
-      gridGap="1rem"
-    >
-      <Heading as="h1" size="lg" color="yellow.400" fontWeight="light">
-        The Blog
-      </Heading>
-      <Heading as="h1" size="xl">
-        Latest News
-      </Heading>
-      <Divider borderColor="yellow.400" borderWidth="2px" width="150px" />
-      <HStack width="100%" mt="3rem">
-        <GliderCarousel isArrow>
-          {latestNews.map((data, index) => (
-            <CarouselItem key={index}>
+    <LayoutDefault>
+      <Box minH="60vh" p="5%" mt="4rem">
+        <Box
+          px="10%"
+          pt="2rem"
+          pb="5rem"
+          display="flex"
+          alignItems="center"
+          flexDir="column"
+          gridGap="1rem"
+        >
+          <Heading as="h1" size="lg" color="yellow.400">
+            Blog
+          </Heading>
+          <Heading as="h1" size="xl" color="black">
+            Upgrade your knowledge
+          </Heading>
+          <Divider borderColor="yellow.400" borderWidth="2px" width="100px" />
+        </Box>
+        <Grid gridTemplateColumns="60% 40%">
+          <VStack>
+            {latestNews.map((data, Date) => (
               <ArticlesCard
+                key={index}
                 image={data.image}
                 title={data.title}
                 date={data.date}
                 description={data.description}
-                isColumn
               />
-            </CarouselItem>
-          ))}
-        </GliderCarousel>
-      </HStack>
-    </Box>
+            ))}
+          </VStack>
+          <VStack></VStack>
+        </Grid>
+      </Box>
+    </LayoutDefault>
   );
 };
 
-export default LatestNewsSection;
+export default BlogIndex;

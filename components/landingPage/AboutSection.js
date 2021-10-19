@@ -44,9 +44,6 @@ const AboutSection = () => {
           felis, vel luctus sapien nisi non orci. Ut laoreet ante tellus, vel
           hendrerit lorem tincidunt sed. Etiam rhoncus euismod velit ac rutrum.
         </Text>
-        <Button backgroundColor="yellow.400" colorScheme="yellow">
-          Read more
-        </Button>
       </VStack>
     </Box>
   );

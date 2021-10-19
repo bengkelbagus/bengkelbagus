@@ -44,7 +44,6 @@ const TestimonialSection = () => {
       </Box>
       <Grid
         mx="auto"
-        width="80%"
         mt="4rem"
         gridGap="4rem"
         gridTemplateColumns={isTabletDisplay ? "1fr" : "repeat(3, 1fr)"}

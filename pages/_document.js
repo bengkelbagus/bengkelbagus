@@ -21,7 +21,7 @@ class MyDocument extends Document {
           ></script>
           <script
             id="dsq-count-scr"
-            src="//bengkel-bagus.disqus.com/count.js"
+            src="https://bengkel-bagus.disqus.com/count.js"
             async
           ></script>
         </body>

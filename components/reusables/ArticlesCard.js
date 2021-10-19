@@ -1,32 +1,87 @@
+import useWindowSize from "@/Hooks/UseWindowSize";
 import { FRONTEND_URL } from "@/Utils/Constants";
 import { dateFormat, trimString } from "@/Utils/Helper";
 import { VStack, Box, Heading, Text } from "@chakra-ui/layout";
+import styled from "@emotion/styled";
 import Link from "next/link";
 
-const ArticlesCard = ({ image, title, date, description }) => {
+const ImageContainer = styled.div`
+  background-color: #222;
+  background-image: url(${(prop) => prop.backgroundImage});
+  background-size: cover;
+  background-repeat: no-repeat;
+  height: 100%;
+  width: 100%;
+  cursor: pointer;
+  aspect-ratio: 1;
+`;
+
+const Title = styled.h4`
+  font-weight: 700;
+  font-size: 20px;
+  cursor: pointer;
+  opacity: 1;
+
+  &:hover {
+    opacity: 0.8;
+  }
+`;
+
+const DateText = styled.p`
+  font-size: 14px;
+  cursor: pointer;
+  color: #ccc;
+
+  &:hover {
+    color: #aaa;
+  }
+`;
+
+const CommentText = styled.a`
+  align-self: flex-end;
+  font-size: 14px;
+  cursor: pointer;
+  color: #ccc;
+
+  &:hover {
+    color: #aaa;
+  }
+`;
+
+const ArticlesCard = ({ image, title, date, description, isColumn }) => {
+  const { isMobileDisplay } = useWindowSize();
   if (!image || !title || !date || !description) return null;
 
+  const dateFormatted = date.toISOString().split("T")[0];
+  const dateLink = `/blog/${dateFormatted}`;
+  const postLink = `/blog/${dateFormatted}/${title}`;
+
   return (
-    <Link
-      href={
-        FRONTEND_URL + "/post/" + title + "-" + date.toISOString().split("T")[0]
-      }
-      passHref
+    <Box
+      display="flex"
+      flexDir={isColumn || isMobileDisplay ? "column" : "row"}
+      alignItems="flex-start"
+      gridGap="1rem"
+      w="100%"
     >
-      <VStack alignItems="flex-start" w="100%">
-        <Box
-          backgroundColor="yellow.400"
-          backgroundImage={image}
-          height="150px"
-          width="100%"
-        ></Box>
-        <Heading as="h4" size="md">
-          {title}
-        </Heading>
-        <Text color="gray">{dateFormat(date)}</Text>
-        <Text height="100px">{trimString(description, 100)}</Text>
+      <Link href={FRONTEND_URL + postLink} passHref>
+        <ImageContainer backgroundImage={image}></ImageContainer>
+      </Link>
+      <VStack alignItems="flex-start">
+        <Box gridGap="5px">
+          <Link href={FRONTEND_URL + postLink} passHref>
+            <Title>{title}</Title>
+          </Link>
+          <Link href={FRONTEND_URL + dateLink} passHref>
+            <DateText>{dateFormat(date)}</DateText>
+          </Link>
+        </Box>
+        <Text>{trimString(description, 100)}</Text>
+        <CommentText
+          href={FRONTEND_URL + postLink + "#disqus_thread"}
+        ></CommentText>
       </VStack>
-    </Link>
+    </Box>
   );
 };
 
