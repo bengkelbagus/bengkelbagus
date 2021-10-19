@@ -49,7 +49,7 @@ const BlogDate = () => {
         </Box>
         <Grid gridTemplateColumns="60% 40%">
           <VStack>
-            {latestNews.map((data, Date) => (
+            {latestNews.map((data, index) => (
               <ArticlesCard
                 key={index}
                 image={data.image}
