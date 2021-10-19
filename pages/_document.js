@@ -19,11 +19,6 @@ class MyDocument extends Document {
             src="//code.tidio.co/xmo62vk11q8ivkkwyluuejxbcsligg2b.js"
             async
           ></script>
-          <script
-            id="dsq-count-scr"
-            src="https://bengkel-bagus.disqus.com/count.js"
-            async
-          ></script>
         </body>
       </Html>
     );

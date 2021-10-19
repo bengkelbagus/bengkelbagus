@@ -1,6 +1,8 @@
 import LayoutDefault from "@/Layout/Default";
 import ArticlesCard from "@/Reusables/ArticlesCard";
-import { Box, Divider, Grid, Heading, VStack } from "@chakra-ui/layout";
+import ArticlesHorizontalCard from "@/Reusables/ArticlesHorizontalCard";
+import { Box, Divider, Grid, Heading, HStack, VStack } from "@chakra-ui/layout";
+import Categories from "./Categories";
 import RecommendedArticles from "./RecommendedArticles";
 
 const BlogComponent = () => {
@@ -50,48 +52,56 @@ const BlogComponent = () => {
   ];
 
   return (
-    <LayoutDefault>
-      <Box minH="60vh" p="5%" mt="4rem">
-        <Box
-          px="10%"
-          pt="2rem"
-          pb="5rem"
-          display="flex"
-          alignItems="center"
-          flexDir="column"
-          gridGap="1rem"
-        >
-          <Heading as="h1" size="lg" color="yellow.400">
-            Blog
-          </Heading>
-          <Heading as="h1" size="xl" color="black">
-            Upgrade your knowledge
-          </Heading>
-          <Divider borderColor="yellow.400" borderWidth="2px" width="100px" />
-        </Box>
-        <Grid
-          mx="auto"
-          maxWidth="60vw"
-          gridTemplateColumns="60% 40%"
-          gridGap="5%"
-        >
-          <VStack>
-            {latestNews.map((data, index) => (
-              <ArticlesCard
-                key={index}
+    <Box minH="60vh" p="5%" mt="4rem">
+      <Box
+        px="10%"
+        pt="2rem"
+        pb="5rem"
+        display="flex"
+        alignItems="center"
+        flexDir="column"
+        gridGap="1rem"
+      >
+        <Heading as="h1" size="lg" color="yellow.400">
+          Blog
+        </Heading>
+        <Heading as="h1" size="xl" color="black">
+          Upgrade your knowledge
+        </Heading>
+        <Divider borderColor="yellow.400" borderWidth="2px" width="100px" />
+      </Box>
+      <HStack
+        mx="auto"
+        maxWidth="80vw"
+        gridGap="5%"
+        alignItems="flex-start"
+        flexWrap="wrap"
+      >
+        <VStack flex="1" minW="400px" width="100%" gridGap="1rem">
+          {latestNews.map((data, index) => (
+            <Box key={index}>
+              <ArticlesHorizontalCard
                 image={data.image}
                 title={data.title}
                 date={data.date}
                 description={data.description}
               />
-            ))}
-          </VStack>
-          <VStack position="sticky" top="10vh" height="fit-content">
-            <RecommendedArticles />
-          </VStack>
-        </Grid>
-      </Box>
-    </LayoutDefault>
+            </Box>
+          ))}
+        </VStack>
+        <VStack
+          flex="0.4"
+          minWidth="300px"
+          position="sticky"
+          top="10vh"
+          height="fit-content"
+          gridGap="1rem"
+        >
+          <RecommendedArticles />
+          <Categories />
+        </VStack>
+      </HStack>
+    </Box>
   );
 };
 

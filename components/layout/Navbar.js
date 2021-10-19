@@ -28,11 +28,11 @@ const Navbar = () => {
   const navigations = [
     {
       name: "about",
-      link: "#about",
+      link: "/#about",
     },
     {
       name: "portofolio",
-      link: "#portofolio",
+      link: "/#portofolio",
     },
     {
       name: "blog",
@@ -42,9 +42,11 @@ const Navbar = () => {
 
   return (
     <Box color="white" display="flex" justifyContent="space-between">
-      <Heading as="h4" size="sm">
-        Bengkel Bagus
-      </Heading>
+      <Link href="/" passHref>
+        <Heading as="h4" size="sm" cursor="pointer">
+          Bengkel Bagus
+        </Heading>
+      </Link>
       <HStack gridGap="1rem">
         {navigations.map((data, index) => (
           <Link href={data.link} key={index} passHref>

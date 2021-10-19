@@ -1,6 +1,7 @@
+import useWindowSize from "@/Hooks/UseWindowSize";
 import { FRONTEND_URL } from "@/Utils/Constants";
-import { dateFormat } from "@/Utils/Helper";
-import { VStack, Box } from "@chakra-ui/layout";
+import { dateFormat, trimString } from "@/Utils/Helper";
+import { VStack, Box, Heading, Text } from "@chakra-ui/layout";
 import styled from "@emotion/styled";
 import Link from "next/link";
 
@@ -9,15 +10,14 @@ const ImageContainer = styled.div`
   background-image: url(${(prop) => prop.backgroundImage});
   background-size: cover;
   background-repeat: no-repeat;
-  height: 81px;
-  width: 81px;
+  min-width: 200px;
   cursor: pointer;
   aspect-ratio: 1;
 `;
 
 const Title = styled.h4`
   font-weight: 700;
-  font-size: 16px;
+  font-size: 20px;
   cursor: pointer;
   opacity: 1;
 
@@ -36,7 +36,7 @@ const DateText = styled.p`
   }
 `;
 
-const CommentText = styled.a`
+const CommentText = styled.span`
   align-self: flex-end;
   font-size: 14px;
   cursor: pointer;
@@ -47,7 +47,8 @@ const CommentText = styled.a`
   }
 `;
 
-const ArticlesMiniCard = ({ image, title, date, description }) => {
+const ArticlesHorizontalCard = ({ image, title, date, description }) => {
+  const { isLaptopDisplay } = useWindowSize();
   if (!image || !title || !date || !description) return null;
 
   const dateFormatted = date.toISOString().split("T")[0];
@@ -59,7 +60,7 @@ const ArticlesMiniCard = ({ image, title, date, description }) => {
       display="flex"
       flexDir="row"
       alignItems="flex-start"
-      gridGap="1rem"
+      gridGap="2rem"
       w="100%"
     >
       <Link href={FRONTEND_URL + postLink} passHref>
@@ -74,9 +75,16 @@ const ArticlesMiniCard = ({ image, title, date, description }) => {
             <DateText>{dateFormat(date)}</DateText>
           </Link>
         </Box>
+        <Text>{trimString(description, isLaptopDisplay ? 100 : 200)}</Text>
+        <CommentText
+          className="disqus-comment-count"
+          data-disqus-url={FRONTEND_URL + postLink + "#disqus_thread"}
+        >
+          {" "}
+        </CommentText>
       </VStack>
     </Box>
   );
 };
 
-export default ArticlesMiniCard;
+export default ArticlesHorizontalCard;

@@ -10,7 +10,6 @@ const ImageContainer = styled.div`
   background-image: url(${(prop) => prop.backgroundImage});
   background-size: cover;
   background-repeat: no-repeat;
-  height: 100%;
   width: 100%;
   cursor: pointer;
   aspect-ratio: 1;
@@ -37,8 +36,7 @@ const DateText = styled.p`
   }
 `;
 
-const CommentText = styled.a`
-  align-self: flex-end;
+const CommentText = styled.span`
   font-size: 14px;
   cursor: pointer;
   color: #ccc;
@@ -48,8 +46,7 @@ const CommentText = styled.a`
   }
 `;
 
-const ArticlesCard = ({ image, title, date, description, isColumn }) => {
-  const { isMobileDisplay } = useWindowSize();
+const ArticlesCard = ({ image, title, date, description }) => {
   if (!image || !title || !date || !description) return null;
 
   const dateFormatted = date.toISOString().split("T")[0];
@@ -59,7 +56,7 @@ const ArticlesCard = ({ image, title, date, description, isColumn }) => {
   return (
     <Box
       display="flex"
-      flexDir={isColumn || isMobileDisplay ? "column" : "row"}
+      flexDir="column"
       alignItems="flex-start"
       gridGap="1rem"
       w="100%"
@@ -78,8 +75,11 @@ const ArticlesCard = ({ image, title, date, description, isColumn }) => {
         </Box>
         <Text>{trimString(description, 100)}</Text>
         <CommentText
-          href={FRONTEND_URL + postLink + "#disqus_thread"}
-        ></CommentText>
+          className="disqus-comment-count"
+          data-disqus-url={FRONTEND_URL + postLink + "#disqus_thread"}
+        >
+          {" "}
+        </CommentText>
       </VStack>
     </Box>
   );

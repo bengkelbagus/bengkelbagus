@@ -13,7 +13,6 @@ export const isOnMobilePhoneFetch = () => {
 };
 
 export const trimString = (data, maxChar = 10) => {
-  console.log(data);
   return data.split(" ").slice(0, -1).join(" ").length > 10
     ? data.split(" ").slice(0, -1).join(" ").slice(0, maxChar) + "..."
     : data.split(" ").slice(0, -1).join(" ");
