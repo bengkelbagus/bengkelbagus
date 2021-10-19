@@ -41,7 +41,7 @@ const Navbar = () => {
       <Heading as="h4" size="sm">
         Bengkel Bagus
       </Heading>
-      <HStack>
+      <HStack gridGap="1rem">
         {navigations.map((data, index) => (
           <Link href={data.link} key={index} passHref>
             <LinkItem>{data.name}</LinkItem>

@@ -4,9 +4,17 @@ import { AnimatePresence, motion } from "framer-motion";
 import Footer from "./Footer";
 import Navbar from "./Navbar";
 import useWindowSize from "@/Hooks/UseWindowSize";
+import { useRef, useState } from "react";
+import useEventListener from "@/Hooks/UseEventListener";
 
 const LayoutDefault = ({ children, title, heads }) => {
-  const { isMobileDisplay } = useWindowSize();
+  const bodyRef = useRef(null);
+  const { isLaptopDisplay } = useWindowSize();
+  const [scrollY, setScrollY] = useState(0);
+
+  useEventListener("scroll", () => {
+    setScrollY(window.scrollY);
+  });
 
   return (
     <>
@@ -24,8 +32,8 @@ const LayoutDefault = ({ children, title, heads }) => {
         left="0"
         zIndex="99"
         width="100%"
-        backgroundColor="black"
-        px={isMobileDisplay ? "1rem" : "10%"}
+        backgroundColor={scrollY > 50 ? "blackAlpha.900" : "transparent"}
+        px={isLaptopDisplay ? "2rem" : "10%"}
         py="1.5rem"
       >
         <Navbar />
@@ -40,7 +48,7 @@ const LayoutDefault = ({ children, title, heads }) => {
           exit={{ opacity: 0 }}
           transition={{ duration: 0.5, ease: "easeIn", type: "tween" }}
         >
-          <Box mt="4rem">{children}</Box>
+          <Box ref={bodyRef}>{children}</Box>
         </motion.div>
       </AnimatePresence>
       <Footer />
