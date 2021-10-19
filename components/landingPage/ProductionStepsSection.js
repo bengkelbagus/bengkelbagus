@@ -34,13 +34,6 @@ const ProductionStepsSection = () => {
     },
   ];
 
-  console.log(
-    trimString(
-      "Sample text. Lorem ipsum dolor sit amet, consectetur adipiscing elit nullam nunc",
-      20
-    )
-  );
-
   return (
     <Box
       backgroundColor="blackAlpha.900"
