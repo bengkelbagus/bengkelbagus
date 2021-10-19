@@ -16,9 +16,9 @@ const PostSlug = () => {
           of comments for pages with Disqus embedded. Paste the following code
           at the bottom of the your index or home page, right before the
           closing. Change the shortname variable from EXAMPLE to whatever the
-          shortname is of the forum you're using. Your shortname can also be
-          found on your forum's Admin Settings General page. On the index or
-          home page, append #disqus_thread to the end of each article URL which
+          shortname is of the forum youre using. Your shortname can also be
+          found on your forums Admin Settings General page. On the index or home
+          page, append #disqus_thread to the end of each article URL which
           appears inside the href tag for the article comments link. This will
           tell Disqus which links to look up so it can return the correct
           comment count.{" "}

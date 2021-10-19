@@ -66,4 +66,4 @@ const BlogDate = () => {
   );
 };
 
-export default BlogIndex;
+export default BlogDate;
