@@ -4,10 +4,11 @@ import dynamic from "next/dynamic";
 const BlogComponent = dynamic(() => import("components/blogPage"));
 
 const BlogDate = () => {
-  const { loading, _, value } = useScript({
-    url: "https://bengkel-bagus.disqus.com/count.js",
-    id: "dsq-count-scr",
-  });
+  const { loading, _, value } = useScript(
+    "dsq-count-scr",
+    "https://bengkel-bagus.disqus.com/count.js",
+    [router]
+  );
 
   return (
     <LayoutDefault>
