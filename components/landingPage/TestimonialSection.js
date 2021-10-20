@@ -6,7 +6,6 @@ const TestimonialSection = () => {
   const { testimonials } = useDataBackend();
   const { isTabletDisplay, isMobileDisplay } = useWindowSize();
 
-  console.log(testimonials);
   if (testimonials.length === 0) return null;
   return (
     <Box

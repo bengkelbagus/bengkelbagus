@@ -11,7 +11,6 @@ const BlogComponent = () => {
   const { blogs } = useDataBackend();
   const { isTabletDisplay, isMobileDisplay } = useWindowSize();
 
-  console.log(blogs);
   if (blogs.length === 0) return null;
 
   return (

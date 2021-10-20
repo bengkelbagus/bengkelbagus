@@ -14,7 +14,7 @@ import { useDataBackend } from "components/context/DataContext";
 const ProductionStepsSection = () => {
   const { productionStep } = useDataBackend();
   const { isTabletDisplay } = useWindowSize();
-  console.log(productionStep);
+
   if (productionStep.length === 0) return null;
   return (
     <Box
