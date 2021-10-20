@@ -49,7 +49,7 @@ const LatestNewsSection = () => {
       <Divider borderColor="yellow.400" borderWidth="2px" width="150px" />
       <HStack width="100%" mt="3rem" overflowX="auto" gridGap="1rem">
         {latestNews.slice(0, 3).map((data, index) => (
-          <Box key={index} minWidth="240px">
+          <Box key={index} minWidth="240px" maxWidth="240px">
             <ArticlesCard
               image={data.image}
               title={data.title}

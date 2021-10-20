@@ -14,7 +14,6 @@ const HeroSection = () => {
       backgroundRepeat="no-repeat"
       color="white"
       display="flex"
-      justifyContent="center"
       alignItems="center"
       p="10%"
       position="relative"
