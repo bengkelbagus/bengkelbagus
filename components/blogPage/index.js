@@ -7,7 +7,7 @@ import Categories from "./Categories";
 import RecommendedArticles from "./RecommendedArticles";
 
 const BlogComponent = () => {
-  const { isTabletDisplay } = useWindowSize();
+  const { isTabletDisplay, isMobileDisplay } = useWindowSize();
 
   const latestNews = [
     {
@@ -55,7 +55,7 @@ const BlogComponent = () => {
   ];
 
   return (
-    <Box minH="60vh" p="5%" mt="4rem">
+    <Box minH="60vh" p="5%" my="4rem">
       <Box
         px="10%"
         pt="2rem"
@@ -90,7 +90,7 @@ const BlogComponent = () => {
         >
           {latestNews.map((data, index) => (
             <Box key={index}>
-              {isTabletDisplay ? (
+              {isMobileDisplay ? (
                 <ArticlesCard
                   image={data.image}
                   title={data.title}
@@ -115,10 +115,10 @@ const BlogComponent = () => {
           position="sticky"
           top="10vh"
           height="fit-content"
-          gridGap="4rem"
+          gridGap="2rem"
         >
-          <RecommendedArticles />
           <Categories />
+          <RecommendedArticles />
         </VStack>
       </Box>
     </Box>
