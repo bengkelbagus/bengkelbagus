@@ -1,6 +1,7 @@
 import useWindowSize from "@/Hooks/UseWindowSize";
 import { Button } from "@chakra-ui/button";
 import { Box, Divider, Heading, Text } from "@chakra-ui/layout";
+import Link from "next/link";
 
 const HeroSection = () => {
   const { isTabletDisplay } = useWindowSize();
@@ -49,9 +50,11 @@ const HeroSection = () => {
             Sample text. Lorem ipsum dolor sit amet, consectetur adipiscing elit
             nullam nunc justo sagittis suscipit ultrices.
           </Text>
-          <Button backgroundColor="yellow.400" colorScheme="yellow">
-            Our Portofolio
-          </Button>
+          <Link href="#portofolio" passHref>
+            <Button backgroundColor="yellow.400" colorScheme="yellow">
+              Our Portofolio
+            </Button>
+          </Link>
         </Box>
         {!isTabletDisplay && <Box flex="0.3"></Box>}
       </Box>
