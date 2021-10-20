@@ -1,15 +1,19 @@
 import useWindowSize from "@/Hooks/UseWindowSize";
 import { Button } from "@chakra-ui/button";
 import { Box, Divider, Heading, Text } from "@chakra-ui/layout";
+import { useDataBackend } from "components/context/DataContext";
 import Link from "next/link";
 
 const HeroSection = () => {
+  const { hero } = useDataBackend();
   const { isTabletDisplay } = useWindowSize();
+
+  if (!hero) return null;
 
   return (
     <Box
       minH={isTabletDisplay ? "80vh" : "60vh"}
-      backgroundImage="/images/hero-1.png"
+      backgroundImage={hero.image.url}
       backgroundSize="cover"
       backgroundRepeat="no-repeat"
       color="white"
@@ -31,13 +35,10 @@ const HeroSection = () => {
       <Box zIndex="1">
         <Box flex={isTabletDisplay ? "1" : "0.7"}>
           <Heading as="h1" size="xl">
-            We are Builders
+            {hero.subHeading}
           </Heading>
           <Heading as="h1" size="2xl" my="1rem">
-            We Will Build{" "}
-            <Text as="span" whiteSpace="nowrap">
-              Your Dream
-            </Text>
+            {hero.heading}
           </Heading>
           <Divider
             opacity="1"
@@ -45,10 +46,7 @@ const HeroSection = () => {
             borderWidth="2px"
             width="100px"
           />
-          <Text my="1rem">
-            Sample text. Lorem ipsum dolor sit amet, consectetur adipiscing elit
-            nullam nunc justo sagittis suscipit ultrices.
-          </Text>
+          <Text my="1rem">{hero.description}</Text>
           <Link href="#portofolio" passHref>
             <Button backgroundColor="yellow.400" colorScheme="yellow">
               Our Portofolio

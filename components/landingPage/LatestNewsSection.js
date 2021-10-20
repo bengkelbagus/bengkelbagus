@@ -5,31 +5,12 @@ import {
 } from "@/Reusables/gliderJS/GliderCarousel";
 import { trimString } from "@/Utils/Helper";
 import { Box, Divider, Heading, HStack, Text, VStack } from "@chakra-ui/layout";
+import { useDataBackend } from "components/context/DataContext";
 
 const LatestNewsSection = () => {
-  const latestNews = [
-    {
-      image: "test",
-      title: "test",
-      date: new Date("2021-03-20"),
-      description:
-        "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam a mauris rutrum, egestas mauris eget, iaculis ipsum. Fusce vehicula at turpis ut dignissim. Vivamus in enim sed sem elementum dictum. Maecenas in fermentum sapien. Quisque lacinia, nunc sed pulvinar mollis, dui nisi tempus felis, a mattis elit lacus et odio. Fusce ut sapien eget quam vulputate ullamcorper eget tristique massa. Donec eget lacus a odio imperdiet ultrices. Pellentesque sed aliquet metus. Quisque in elementum erat. Vivamus id volutpat sem. Curabitur eleifend sit amet diam a viverra.",
-    },
-    {
-      image: "test",
-      title: "test",
-      date: new Date("2021-03-20"),
-      description:
-        "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam a mauris rutrum, egestas mauris eget, iaculis ipsum. Fusce vehicula at turpis ut dignissim. Vivamus in enim sed sem elementum dictum. Maecenas in fermentum sapien. Quisque lacinia, nunc sed pulvinar mollis, dui nisi tempus felis, a mattis elit lacus et odio. Fusce ut sapien eget quam vulputate ullamcorper eget tristique massa. Donec eget lacus a odio imperdiet ultrices. Pellentesque sed aliquet metus. Quisque in elementum erat. Vivamus id volutpat sem. Curabitur eleifend sit amet diam a viverra.",
-    },
-    {
-      image: "test",
-      title: "test",
-      date: new Date("2021-03-20"),
-      description:
-        "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam a mauris rutrum, egestas mauris eget, iaculis ipsum. Fusce vehicula at turpis ut dignissim. Vivamus in enim sed sem elementum dictum. Maecenas in fermentum sapien. Quisque lacinia, nunc sed pulvinar mollis, dui nisi tempus felis, a mattis elit lacus et odio. Fusce ut sapien eget quam vulputate ullamcorper eget tristique massa. Donec eget lacus a odio imperdiet ultrices. Pellentesque sed aliquet metus. Quisque in elementum erat. Vivamus id volutpat sem. Curabitur eleifend sit amet diam a viverra.",
-    },
-  ];
+  const { blogs } = useDataBackend();
+
+  if (blogs.length === 0) return null;
 
   return (
     <Box
@@ -48,12 +29,13 @@ const LatestNewsSection = () => {
       </Heading>
       <Divider borderColor="yellow.400" borderWidth="2px" width="150px" />
       <HStack width="100%" mt="3rem" overflowX="auto" gridGap="1rem">
-        {latestNews.slice(0, 3).map((data, index) => (
+        {blogs.slice(0, 3).map((data, index) => (
           <Box key={index} minWidth="240px" maxWidth="240px">
             <ArticlesCard
-              image={data.image}
+              id={data.id}
+              image={data.featuredImage.url}
               title={data.title}
-              date={data.date}
+              date={new Date(data.published_at)}
               description={data.description}
               isColumn
             />

@@ -47,13 +47,11 @@ const CommentText = styled.span`
   }
 `;
 
-const ArticlesHorizontalCard = ({ image, title, date, description }) => {
+const ArticlesHorizontalCard = ({ id, image, title, date, description }) => {
   const { isLaptopDisplay } = useWindowSize();
   if (!image || !title || !date || !description) return null;
 
-  const dateFormatted = date.toISOString().split("T")[0];
-  const dateLink = `/blog/${dateFormatted}`;
-  const postLink = `/blog/${dateFormatted}/${title}`;
+  const postLink = `/blog/${id}`;
 
   return (
     <Box
@@ -71,7 +69,7 @@ const ArticlesHorizontalCard = ({ image, title, date, description }) => {
           <Link href={FRONTEND_URL + postLink} passHref>
             <Title>{title}</Title>
           </Link>
-          <Link href={FRONTEND_URL + dateLink} passHref>
+          <Link href={FRONTEND_URL + postLink} passHref>
             <DateText>{dateFormat(date)}</DateText>
           </Link>
         </Box>

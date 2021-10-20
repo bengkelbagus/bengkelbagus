@@ -2,18 +2,18 @@ import dynamic from "next/dynamic";
 import LayoutDefault from "@/Layout/Default";
 import useScript from "@/Hooks/UseScript";
 import { useRouter } from "next/router";
-const LandingPage = dynamic(() => import("components/landingPage"));
+import LandingPage from "@/Components/landingPage";
 
 const Home = () => {
   const router = useRouter();
   const { loading, _, value } = useScript(
-    "dsq-count-scr",
     "https://bengkel-bagus.disqus.com/count.js",
+    "dsq-count-scr",
     [router]
   );
 
   return (
-    <LayoutDefault>
+    <LayoutDefault title="Home | Bengkel Bagus">
       <LandingPage />
     </LayoutDefault>
   );

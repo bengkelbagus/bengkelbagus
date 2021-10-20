@@ -1,11 +1,16 @@
 import useWindowSize from "@/Hooks/UseWindowSize";
 import { Button } from "@chakra-ui/button";
 import { Image } from "@chakra-ui/image";
+import { useDataBackend } from "components/context/DataContext";
 
 const { Box, VStack, Heading, Divider, Text } = require("@chakra-ui/layout");
 
 const HighlightPostSection = () => {
+  const { highlightNews } = useDataBackend();
   const { isLaptopDisplay } = useWindowSize();
+  const blog = highlightNews ? highlightNews.blog : null;
+
+  if (!blog) return null;
 
   return (
     <Box
@@ -29,21 +34,12 @@ const HighlightPostSection = () => {
         </Box>
         <VStack flex="1" minW="200px" alignItems="flex-start" gridGap="1rem">
           <VStack alignItems="flex-start">
-            <Heading as="h1" size="lg" color="yellow.400">
-              Welcome to
-            </Heading>
-            <Heading as="h1" size="xl">
-              BengkelBagus
+            <Heading as="h1" size="lg" color="black">
+              {blog.title}
             </Heading>
           </VStack>
           <Divider borderColor="yellow.400" borderWidth="2px" width="100px" />
-          <Text>
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas
-            gravida cursus eleifend. Nullam ornare sapien quis vulputate cursus.
-            Vivamus vel pellentesque purus, sed dignissim elit. Maecenas ac
-            augue metus. Suspendisse in elit nibh. Vestibulum in nibh risus.
-            Phasellus ut cursus sem.
-          </Text>
+          <Text>{blog.description}</Text>
           <Button backgroundColor="yellow.400" colorScheme="yellow">
             Read More
           </Button>

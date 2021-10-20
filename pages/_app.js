@@ -7,6 +7,7 @@ import "@fontsource/poppins/600.css";
 import "@fontsource/poppins/700.css";
 import { ChakraProvider, extendTheme } from "@chakra-ui/react";
 import Head from "next/head";
+import { DataProvider } from "components/context/DataContext";
 
 const theme = extendTheme({
   colors: {
@@ -30,7 +31,7 @@ const theme = extendTheme({
 
 function MyApp({ Component, pageProps }) {
   return (
-    <>
+    <DataProvider>
       <Head>
         <meta
           name="viewport"
@@ -40,7 +41,7 @@ function MyApp({ Component, pageProps }) {
       <ChakraProvider theme={theme}>
         <Component {...pageProps} />
       </ChakraProvider>
-    </>
+    </DataProvider>
   );
 }
 

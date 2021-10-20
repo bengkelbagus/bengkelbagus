@@ -9,31 +9,13 @@ import {
   VStack,
 } from "@chakra-ui/layout";
 import useWindowSize from "@/Hooks/UseWindowSize";
+import { useDataBackend } from "components/context/DataContext";
 
 const ProductionStepsSection = () => {
-  const { isTabletDisplay, isLaptopDisplay } = useWindowSize();
-
-  const productionSteps = [
-    {
-      title: "Design & Building",
-      description:
-        "Sample text. Lorem ipsum dolor sit amet, consectetur adipiscing elit nullam nunc",
-      bgImage: "/images/production-1.png",
-    },
-    {
-      title: "Construction Renovation",
-      description:
-        "Sample text. Lorem ipsum dolor sit amet, consectetur adipiscing elit nullam nunc",
-      bgImage: "/images/production-2.png",
-    },
-    {
-      title: "Finishing Interiors",
-      description:
-        "Sample text. Lorem ipsum dolor sit amet, consectetur adipiscing elit nullam nunc",
-      bgImage: "/images/production-3.png",
-    },
-  ];
-
+  const { productionStep } = useDataBackend();
+  const { isTabletDisplay } = useWindowSize();
+  console.log(productionStep);
+  if (productionStep.length === 0) return null;
   return (
     <Box
       backgroundColor="blackAlpha.900"
@@ -46,13 +28,13 @@ const ProductionStepsSection = () => {
         minH="40vh"
         gridTemplateColumns={isTabletDisplay ? "1fr" : "repeat(3, 1fr)"}
       >
-        {productionSteps.map((data, index) => (
+        {productionStep.map((data, index) => (
           <GridItem
             minH="350px"
             height="100%"
             key={index}
             p="2rem"
-            backgroundImage={data.bgImage}
+            backgroundImage={data.productionImage.url}
             backgroundBlendMode="overlay"
             backgroundSize="cover"
             backgroundRepeat="no-repeat"
@@ -77,7 +59,7 @@ const ProductionStepsSection = () => {
                   borderWidth="2px"
                   width="100px"
                 />
-                <Text>{trimString(data.description, 200)}</Text>
+                <Text>{data.description}</Text>
               </VStack>
             </VStack>
           </GridItem>

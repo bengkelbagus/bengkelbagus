@@ -8,32 +8,16 @@ import {
   GridItem,
   Heading,
 } from "@chakra-ui/layout";
+import { useDataBackend } from "components/context/DataContext";
 
 const PortofolioSection = () => {
-  const { isMobileDisplay, isLaptopDisplay } = useWindowSize();
+  const { projects } = useDataBackend();
+  const { isMobileDisplay } = useWindowSize();
 
-  const imagesPortofolio = [
-    {
-      src: "/images/production-1.png",
-    },
-    {
-      src: "/images/production-3.png",
-    },
-    {
-      src: "/images/production-3.png",
-    },
-    {
-      src: "/images/production-2.png",
-    },
-    {
-      src: "/images/production-2.png",
-    },
-    {
-      src: "/images/production-1.png",
-    },
-  ];
+  if (projects.length === 0) return null;
+
   return (
-    <Box id="portofolio" minH="60vh" backgroundColor="blackAlpha.900">
+    <Box id="portofolio" minH="40vh" backgroundColor="blackAlpha.900">
       <Box
         px="10%"
         py="5rem"
@@ -50,13 +34,20 @@ const PortofolioSection = () => {
         </Heading>
         <Divider borderColor="yellow.400" borderWidth="2px" width="100px" />
       </Box>
-      <Grid gridTemplateColumns={isMobileDisplay ? "1fr" : "repeat(2, 1fr)"}>
-        {imagesPortofolio.map((data, index) => (
-          <GridItem key={index}>
-            <Image boxSize="100%" src={data.src} alt={index} />
-          </GridItem>
+      <Box
+        display="flex"
+        flexWrap="wrap"
+        justifyContent="center"
+        alignItems="flex-end"
+      >
+        {projects.map((data, index) => (
+          <>
+            <Box minWidth="280px" flex="1" key={index}>
+              <Image boxSize="100%" src={data.cover.url} alt={index} />
+            </Box>
+          </>
         ))}
-      </Grid>
+      </Box>
     </Box>
   );
 };

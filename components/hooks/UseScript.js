@@ -1,9 +1,9 @@
 import useAsync from "./UseAsync";
 
-export default function useScript({ url, id }) {
+export default function useScript(url, id = "", dependencies) {
   return useAsync(() => {
     const script = document.createElement("script");
-    if (id) script.id = id;
+    script.id = id;
     script.src = url;
     script.async = true;
 
@@ -12,5 +12,5 @@ export default function useScript({ url, id }) {
       script.addEventListener("error", reject);
       document.body.appendChild(script);
     });
-  }, [url]);
+  }, [url, ...dependencies]);
 }

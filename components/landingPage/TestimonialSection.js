@@ -1,30 +1,13 @@
 import useWindowSize from "@/Hooks/UseWindowSize";
 import { Box, Divider, Grid, Heading, HStack, Text } from "@chakra-ui/layout";
+import { useDataBackend } from "components/context/DataContext";
 
 const TestimonialSection = () => {
+  const { testimonials } = useDataBackend();
   const { isTabletDisplay, isMobileDisplay } = useWindowSize();
 
-  const testimonials = [
-    {
-      testimoni:
-        "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas gravida cursus eleifend. Nullam ornare sapien.",
-      name: "Mike Arthur",
-      job: "Architect",
-    },
-    {
-      testimoni:
-        "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas gravida cursus eleifend. Nullam ornare sapien.",
-      name: "Mike Arthur",
-      job: "Architect",
-    },
-    {
-      testimoni:
-        "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas gravida cursus eleifend. Nullam ornare sapien.",
-      name: "Mike Arthur",
-      job: "Architect",
-    },
-  ];
-
+  console.log(testimonials);
+  if (testimonials.length === 0) return null;
   return (
     <Box
       id="testimonial"
@@ -65,7 +48,7 @@ const TestimonialSection = () => {
             color="white"
             key={index}
           >
-            <Text mb="4rem">{data.testimoni}</Text>
+            <Text mb="4rem">{data.caption}</Text>
             <Box
               width="80%"
               position="absolute"
@@ -78,9 +61,9 @@ const TestimonialSection = () => {
               textAlign="center"
             >
               <Heading as="h4" size="sm">
-                {data.name}
+                {data.client.name}
               </Heading>
-              <Text>{data.job}</Text>
+              <Text>{data.client.company}</Text>
             </Box>
           </Box>
         ))}

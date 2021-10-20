@@ -7,13 +7,13 @@ const BlogComponent = dynamic(() => import("components/blogPage"));
 const BlogIndex = () => {
   const router = useRouter();
   const { loading, _, value } = useScript(
-    "dsq-count-scr",
     "https://bengkel-bagus.disqus.com/count.js",
+    "dsq-count-scr",
     [router]
   );
 
   return (
-    <LayoutDefault>
+    <LayoutDefault title="Blogs | Bengkel Bagus">
       <BlogComponent />
     </LayoutDefault>
   );

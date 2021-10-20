@@ -47,12 +47,10 @@ const CommentText = styled.a`
   }
 `;
 
-const ArticlesMiniCard = ({ image, title, date, description }) => {
+const ArticlesMiniCard = ({ id, image, title, date, description }) => {
   if (!image || !title || !date || !description) return null;
 
-  const dateFormatted = date.toISOString().split("T")[0];
-  const dateLink = `/blog/${dateFormatted}`;
-  const postLink = `/blog/${dateFormatted}/${title}`;
+  const postLink = `/blog/${id}`;
 
   return (
     <Box
