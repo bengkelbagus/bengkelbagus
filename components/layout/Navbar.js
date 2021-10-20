@@ -1,4 +1,16 @@
-import { Box, Heading, HStack } from "@chakra-ui/layout";
+import useToggle from "@/Hooks/UseToggle";
+import useWindowSize from "@/Hooks/UseWindowSize";
+import { Button } from "@chakra-ui/button";
+import { HamburgerIcon } from "@chakra-ui/icons";
+import { Box, Divider, Heading, HStack, VStack } from "@chakra-ui/layout";
+import {
+  Drawer,
+  DrawerBody,
+  DrawerCloseButton,
+  DrawerContent,
+  DrawerHeader,
+  DrawerOverlay,
+} from "@chakra-ui/modal";
 import styled from "@emotion/styled";
 import Link from "next/link";
 
@@ -25,6 +37,9 @@ const LinkItem = styled.p`
 `;
 
 const Navbar = () => {
+  const [drawer, toggleDrawer] = useToggle(false);
+  const { isTabletDisplay } = useWindowSize();
+
   const navigations = [
     {
       name: "home",
@@ -49,19 +64,71 @@ const Navbar = () => {
   ];
 
   return (
-    <Box color="white" display="flex" justifyContent="space-between">
+    <Box
+      color="white"
+      display="flex"
+      justifyContent="space-between"
+      alignItems="center"
+    >
       <Link href="/" passHref>
         <Heading as="h4" size="sm" cursor="pointer">
           Bengkel Bagus
         </Heading>
       </Link>
-      <HStack gridGap="1rem">
-        {navigations.map((data, index) => (
-          <Link href={data.link} key={index} passHref>
-            <LinkItem>{data.name}</LinkItem>
-          </Link>
-        ))}
-      </HStack>
+      {isTabletDisplay ? (
+        <>
+          <Button variant="ghost" onClick={() => toggleDrawer(true)}>
+            <HamburgerIcon />
+          </Button>
+          <Drawer
+            isOpen={drawer}
+            placement="right"
+            onClose={() => toggleDrawer(false)}
+          >
+            <DrawerOverlay />
+            <DrawerContent>
+              <DrawerCloseButton mt="5px" mr="5px" color="white" />
+              <DrawerBody backgroundColor="black">
+                <Heading
+                  color="yellow.400"
+                  as="h4"
+                  size="md"
+                  mt="3rem"
+                  px="1rem"
+                >
+                  Bengkel Bagus
+                </Heading>
+                <Divider my="2rem" />
+                <VStack gridGap="2rem" justifyContent="flex-start">
+                  {navigations.map((data, index) => (
+                    <Link href={data.link} key={index} passHref>
+                      <Button
+                        variant="ghost"
+                        width="100%"
+                        display="flex"
+                        justifyContent="flex-start"
+                        colorScheme="blackAlpha"
+                        color="white"
+                        fontSize="32px"
+                      >
+                        {data.name}
+                      </Button>
+                    </Link>
+                  ))}
+                </VStack>
+              </DrawerBody>
+            </DrawerContent>
+          </Drawer>
+        </>
+      ) : (
+        <HStack gridGap="1rem">
+          {navigations.map((data, index) => (
+            <Link href={data.link} key={index} passHref>
+              <LinkItem>{data.name}</LinkItem>
+            </Link>
+          ))}
+        </HStack>
+      )}
     </Box>
   );
 };

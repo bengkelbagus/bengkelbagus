@@ -1,3 +1,4 @@
+import useWindowSize from "@/Hooks/UseWindowSize";
 import LayoutDefault from "@/Layout/Default";
 import ArticlesCard from "@/Reusables/ArticlesCard";
 import ArticlesHorizontalCard from "@/Reusables/ArticlesHorizontalCard";
@@ -6,6 +7,8 @@ import Categories from "./Categories";
 import RecommendedArticles from "./RecommendedArticles";
 
 const BlogComponent = () => {
+  const { isTabletDisplay } = useWindowSize();
+
   const latestNews = [
     {
       image: "test",
@@ -61,6 +64,7 @@ const BlogComponent = () => {
         alignItems="center"
         flexDir="column"
         gridGap="1rem"
+        textAlign="center"
       >
         <Heading as="h1" size="lg" color="yellow.400">
           Blog
@@ -70,37 +74,53 @@ const BlogComponent = () => {
         </Heading>
         <Divider borderColor="yellow.400" borderWidth="2px" width="100px" />
       </Box>
-      <HStack
+      <Box
         mx="auto"
         maxWidth="80vw"
         gridGap="5%"
+        display="flex"
         alignItems="flex-start"
         flexWrap="wrap"
       >
-        <VStack flex="1" minW="400px" width="100%" gridGap="1rem">
+        <VStack
+          flex="1"
+          minW={isTabletDisplay ? "100%" : "400px"}
+          width="100%"
+          gridGap="2rem"
+        >
           {latestNews.map((data, index) => (
             <Box key={index}>
-              <ArticlesHorizontalCard
-                image={data.image}
-                title={data.title}
-                date={data.date}
-                description={data.description}
-              />
+              {isTabletDisplay ? (
+                <ArticlesCard
+                  image={data.image}
+                  title={data.title}
+                  date={data.date}
+                  description={data.description}
+                />
+              ) : (
+                <ArticlesHorizontalCard
+                  image={data.image}
+                  title={data.title}
+                  date={data.date}
+                  description={data.description}
+                />
+              )}
             </Box>
           ))}
         </VStack>
         <VStack
+          mt={isTabletDisplay ? "4rem" : "0"}
           flex="0.4"
           minWidth="300px"
           position="sticky"
           top="10vh"
           height="fit-content"
-          gridGap="1rem"
+          gridGap="4rem"
         >
           <RecommendedArticles />
           <Categories />
         </VStack>
-      </HStack>
+      </Box>
     </Box>
   );
 };

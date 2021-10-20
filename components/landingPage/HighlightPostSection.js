@@ -8,7 +8,13 @@ const HighlightPostSection = () => {
   const { isLaptopDisplay } = useWindowSize();
 
   return (
-    <Box minH="60vh" display="flex" alignItems="center">
+    <Box
+      minH="60vh"
+      flexWrap="wrap"
+      display="flex"
+      alignItems="center"
+      py="4rem"
+    >
       <Box
         height="fit-content"
         width={isLaptopDisplay ? "80%" : "60%"}
@@ -18,7 +24,7 @@ const HighlightPostSection = () => {
         alignItems="center"
         gridGap="2rem"
       >
-        <Box flex="1">
+        <Box flex="1" minWidth="100px">
           <Image src="/images/world-map.png" alt="highlight-pic" />
         </Box>
         <VStack flex="1" minW="200px" alignItems="flex-start" gridGap="1rem">

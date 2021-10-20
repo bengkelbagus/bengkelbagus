@@ -2,7 +2,7 @@ import useWindowSize from "@/Hooks/UseWindowSize";
 import { Box, Divider, Grid, Heading, HStack, Text } from "@chakra-ui/layout";
 
 const TestimonialSection = () => {
-  const { isTabletDisplay } = useWindowSize();
+  const { isTabletDisplay, isMobileDisplay } = useWindowSize();
 
   const testimonials = [
     {
@@ -29,8 +29,9 @@ const TestimonialSection = () => {
     <Box
       id="testimonial"
       minH="60vh"
-      px="5%"
-      p="15vh"
+      px={isMobileDisplay ? "5%" : "10%"}
+      pt="15vh"
+      pb="20vh"
       backgroundColor="blackAlpha.900"
     >
       <Box

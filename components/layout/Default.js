@@ -10,7 +10,7 @@ import { useRouter } from "next/router";
 
 const LayoutDefault = ({ children, title, heads }) => {
   const bodyRef = useRef(null);
-  const { isLaptopDisplay } = useWindowSize();
+  const { isLaptopDisplay, isTabletDisplay } = useWindowSize();
   const [scrollY, setScrollY] = useState(0);
   const router = useRouter();
   const { pathname } = router;
@@ -38,8 +38,9 @@ const LayoutDefault = ({ children, title, heads }) => {
         backgroundColor={
           scrollY > 50 || pathname !== "/" ? "blackAlpha.900" : "transparent"
         }
-        px={isLaptopDisplay ? "2rem" : "10%"}
-        py="1.5rem"
+        pl={isLaptopDisplay ? "2rem" : "10%"}
+        pr={isLaptopDisplay ? "1rem" : "10%"}
+        py={isTabletDisplay ? "10px" : "1.5rem"}
       >
         <Navbar />
       </Box>
