@@ -77,7 +77,12 @@ const Navbar = () => {
       </Link>
       {isTabletDisplay ? (
         <>
-          <Button variant="ghost" onClick={() => toggleDrawer(true)}>
+          <Button
+            variant="ghost"
+            color="white"
+            colorScheme="blackAlpha"
+            onClick={() => toggleDrawer(true)}
+          >
             <HamburgerIcon />
           </Button>
           <Drawer
