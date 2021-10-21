@@ -44,7 +44,7 @@ const BlogComponent = ({ blogs }) => {
           gridGap="2rem"
         >
           {blogs.map((data, index) => (
-            <Box key={index}>
+            <Box width="100%" key={index}>
               {isMobileDisplay ? (
                 <ArticlesCard {...data} />
               ) : (
