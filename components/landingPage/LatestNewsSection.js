@@ -1,10 +1,5 @@
 import ArticlesCard from "@/Reusables/ArticlesCard";
-import {
-  CarouselItem,
-  GliderCarousel,
-} from "@/Reusables/gliderJS/GliderCarousel";
-import { trimString } from "@/Utils/Helper";
-import { Box, Divider, Heading, HStack, Text, VStack } from "@chakra-ui/layout";
+import { Box, Divider, Heading, HStack } from "@chakra-ui/layout";
 import { useDataBackend } from "components/context/DataContext";
 
 const LatestNewsSection = () => {
@@ -28,7 +23,13 @@ const LatestNewsSection = () => {
         Latest News
       </Heading>
       <Divider borderColor="yellow.400" borderWidth="2px" width="150px" />
-      <HStack width="100%" mt="3rem" overflowX="auto" gridGap="1rem">
+      <HStack
+        width="100%"
+        mt="3rem"
+        overflowX="auto"
+        gridGap="1rem"
+        alignItems="flex-start"
+      >
         {blogs.slice(0, 3).map((data, index) => (
           <Box key={index} minWidth="240px" maxWidth="240px">
             <ArticlesCard {...data} />

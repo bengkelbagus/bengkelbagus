@@ -43,13 +43,9 @@ export const DataProvider = ({ children }) => {
 
   const fetchData = async (url) => {
     try {
-      const promise = await axios.get(BACKEND_URL + url, {
-        onDownloadProgress: (p) => {
-          const progressPercent = Math.round((p.loaded * 100) / p.total);
-          setProgress((prev) => prev + progressPercent / 2);
-        },
-      });
+      const promise = await axios.get(BACKEND_URL + url);
       const data = await promise.data;
+      setProgress((prev) => prev + 20);
       return [data, null];
     } catch {
       return [null, "Error"];
@@ -57,31 +53,31 @@ export const DataProvider = ({ children }) => {
   };
   const fetchLandingPage = async () => {
     const [data, error] = await fetchData("/landing-page");
-    if (error) alert(error);
+    if (error) console.log(error);
     setLandingPage(data);
   };
 
   const fetchProjects = async () => {
     const [data, error] = await fetchData("/projects");
-    if (error) alert(error);
+    if (error) console.log(error);
     setProjects(data);
   };
 
   const fetchTestimonials = async () => {
     const [data, error] = await fetchData("/testimonials");
-    if (error) alert(error);
+    if (error) console.log(error);
     setTestimonials(data);
   };
 
   const fetchBlogs = async () => {
     const [data, error] = await fetchData("/blogs");
-    if (error) alert(error);
+    if (error) console.log(error);
     setBlogs(data);
   };
 
   const fetchCategories = async () => {
     const [data, error] = await fetchData("/blog-categories");
-    if (error) alert(error);
+    if (error) console.log(error);
     setCategories(data);
   };
 
