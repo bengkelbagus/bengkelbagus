@@ -24,7 +24,11 @@ const Categories = () => {
       <Divider />
       <VStack>
         {categories.map((data, index) => (
-          <Link href={data.name.split(" ").join("")} passHref key={index}>
+          <Link
+            href={"/category/" + data.name.replace(" ", "-")}
+            passHref
+            key={index}
+          >
             <CategoryLink>
               <Text as="span" textTransform="capitalize">
                 {data.name}

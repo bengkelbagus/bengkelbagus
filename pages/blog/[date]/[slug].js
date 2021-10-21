@@ -1,3 +1,4 @@
+import { useDataBackend } from "@/Components/context/DataContext";
 import LayoutDefault from "@/Layout/Default";
 import DiscusComments from "@/Reusables/discus/comments";
 import { BACKEND_URL } from "@/Utils/Constants";
@@ -12,21 +13,13 @@ import ReactMarkdown from "react-markdown";
 const PostSlug = () => {
   const router = useRouter();
   const { query } = router;
-  const { slug } = query;
-  const [blog, setBlog] = useState(null);
-
-  useEffect(() => {
-    fetchBlog();
-  }, [router]);
-
-  const fetchBlog = async () => {
-    axios
-      .get(BACKEND_URL + "/blogs/" + slug)
-      .then(({ data }) => {
-        setBlog(data);
-      })
-      .catch((e) => console.log(e));
-  };
+  const { date, slug } = query;
+  const { blogs } = useDataBackend();
+  const blog = blogs.find(
+    ({ published_at, title }) =>
+      new Date(published_at).toISOString().split("T")[0] === date &&
+      title === slug.replace("-", " ")
+  );
 
   if (!blog) return null;
   return (

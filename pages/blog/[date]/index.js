@@ -6,17 +6,24 @@ import { useRouter } from "next/router";
 const BlogComponent = dynamic(() => import("components/blogPage"));
 
 const BlogIndex = () => {
-  const router = useRouter();
   const { blogs } = useDataBackend();
+  const router = useRouter();
+  const { query } = router;
+  const { date } = query;
   const { loading, _, value } = useScript(
     "https://bengkel-bagus.disqus.com/count.js",
     "dsq-count-scr",
     [router]
   );
 
+  const blogsFormatted = blogs.filter(
+    ({ published_at }) =>
+      new Date(published_at).toISOString().split("T")[0] === date
+  );
+
   return (
     <LayoutDefault title="Blogs | Bengkel Bagus">
-      <BlogComponent blogs={blogs} />
+      <BlogComponent blogs={blogsFormatted} />
     </LayoutDefault>
   );
 };

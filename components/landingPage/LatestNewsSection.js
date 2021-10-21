@@ -31,14 +31,7 @@ const LatestNewsSection = () => {
       <HStack width="100%" mt="3rem" overflowX="auto" gridGap="1rem">
         {blogs.slice(0, 3).map((data, index) => (
           <Box key={index} minWidth="240px" maxWidth="240px">
-            <ArticlesCard
-              id={data.id}
-              image={data.featuredImage.url}
-              title={data.title}
-              date={new Date(data.published_at)}
-              description={data.description}
-              isColumn
-            />
+            <ArticlesCard {...data} />
           </Box>
         ))}
       </HStack>

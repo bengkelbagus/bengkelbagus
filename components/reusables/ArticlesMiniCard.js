@@ -47,10 +47,14 @@ const CommentText = styled.a`
   }
 `;
 
-const ArticlesMiniCard = ({ id, image, title, date, description }) => {
-  if (!image || !title || !date || !description) return null;
+const ArticlesMiniCard = (blog) => {
+  const { featuredImage, title, published_at, description } = blog;
+  if (!featuredImage || !title || !published_at || !description) return null;
 
-  const postLink = `/blog/${id}`;
+  const dateLink = `/blog/${
+    new Date(published_at).toISOString().split("T")[0]
+  }`;
+  const postLink = dateLink + `/${title.replace(" ", "-")}`;
 
   return (
     <Box
@@ -61,7 +65,7 @@ const ArticlesMiniCard = ({ id, image, title, date, description }) => {
       w="100%"
     >
       <Link href={FRONTEND_URL + postLink} passHref>
-        <ImageContainer backgroundImage={image}></ImageContainer>
+        <ImageContainer backgroundImage={featuredImage.url}></ImageContainer>
       </Link>
       <VStack alignItems="flex-start">
         <Box gridGap="5px">
@@ -69,7 +73,7 @@ const ArticlesMiniCard = ({ id, image, title, date, description }) => {
             <Title>{title}</Title>
           </Link>
           <Link href={FRONTEND_URL + dateLink} passHref>
-            <DateText>{dateFormat(date)}</DateText>
+            <DateText>{dateFormat(published_at)}</DateText>
           </Link>
         </Box>
       </VStack>

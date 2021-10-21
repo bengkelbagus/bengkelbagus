@@ -1,14 +1,10 @@
 import useWindowSize from "@/Hooks/UseWindowSize";
-import LayoutDefault from "@/Layout/Default";
 import ArticlesCard from "@/Reusables/ArticlesCard";
 import ArticlesHorizontalCard from "@/Reusables/ArticlesHorizontalCard";
 import { Box, Divider, Grid, Heading, HStack, VStack } from "@chakra-ui/layout";
-import { useDataBackend } from "components/context/DataContext";
 import Categories from "./Categories";
-import RecommendedArticles from "./RecommendedArticles";
 
-const BlogComponent = () => {
-  const { blogs } = useDataBackend();
+const BlogComponent = ({ blogs }) => {
   const { isTabletDisplay, isMobileDisplay } = useWindowSize();
 
   if (blogs.length === 0) return null;
@@ -50,21 +46,9 @@ const BlogComponent = () => {
           {blogs.map((data, index) => (
             <Box key={index}>
               {isMobileDisplay ? (
-                <ArticlesCard
-                  id={data.id}
-                  image={data.featuredImage.url}
-                  title={data.title}
-                  date={new Date(data.published_at)}
-                  description={data.description}
-                />
+                <ArticlesCard {...data} />
               ) : (
-                <ArticlesHorizontalCard
-                  id={data.id}
-                  image={data.featuredImage.url}
-                  title={data.title}
-                  date={new Date(data.published_at)}
-                  description={data.description}
-                />
+                <ArticlesHorizontalCard {...data} />
               )}
             </Box>
           ))}

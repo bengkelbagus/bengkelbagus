@@ -16,14 +16,7 @@ const RecommendedArticles = () => {
         .filter(({ rating }) => rating === 5)
         .slice(0, 4)
         .map((data, index) => (
-          <ArticlesMiniCard
-            key={index}
-            id={data.id}
-            image={data.featuredImage.url}
-            title={data.title}
-            date={new Date(data.published_at)}
-            description={data.description}
-          />
+          <ArticlesMiniCard key={index} {...data} />
         ))}
     </VStack>
   );
