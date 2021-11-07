@@ -1,19 +1,21 @@
+import Comments from "@/Components/blogPage/Comments";
 import { useDataBackend } from "@/Components/context/DataContext";
+import useWindowSize from "@/Components/hooks/UseWindowSize";
+import NextShare from "@/Components/reusables/next-share/NextShare";
 import LayoutDefault from "@/Layout/Default";
 import DiscusComments from "@/Reusables/discus/comments";
-import { BACKEND_URL } from "@/Utils/Constants";
+import { FRONTEND_URL } from "@/Utils/Constants";
 import { dateFormat } from "@/Utils/Helper";
 import { Image } from "@chakra-ui/image";
 import { Box, Heading, HStack, Text, VStack } from "@chakra-ui/layout";
-import axios from "axios";
 import { useRouter } from "next/router";
-import { useEffect, useState } from "react";
 import ReactMarkdown from "react-markdown";
 
 const PostSlug = () => {
   const router = useRouter();
-  const { query } = router;
+  const { query, asPath } = router;
   const { date, slug } = query;
+  const { isTabletDisplay } = useWindowSize();
   const { blogs } = useDataBackend();
   const blog = blogs.find(
     ({ published_at, title }) =>
@@ -24,8 +26,14 @@ const PostSlug = () => {
   if (!blog) return null;
   return (
     <LayoutDefault title={slug + " | Bengkel Bagus"}>
-      <Box minH="60vh" width="80vw" mx="auto" py="10vh" mt="4rem">
-        <Box mb="4rem">
+      <Box
+        minH="60vh"
+        width={isTabletDisplay ? "80vw" : "60vw"}
+        mx="auto"
+        py="10vh"
+        mt="4rem"
+      >
+        <Box display="flex" flexDir="column" mb="2rem">
           <VStack alignItems="flex-start">
             <Heading as="h1" size="2xl">
               title
@@ -52,8 +60,14 @@ const PostSlug = () => {
             <Image width="100%" src={blog.featuredImage.url} alt="post-image" />
           </Box>
           <ReactMarkdown>{blog.content}</ReactMarkdown>
+          <Box mt="2rem" alignSelf="center">
+            <NextShare
+              link={FRONTEND_URL + asPath}
+              caption={blog.description}
+            />
+          </Box>
         </Box>
-        <DiscusComments />
+        <Comments blogId={blog.id} comments={blog.comments} />
       </Box>
     </LayoutDefault>
   );

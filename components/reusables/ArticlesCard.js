@@ -47,7 +47,7 @@ const CommentText = styled.span`
 `;
 
 const ArticlesCard = (blog) => {
-  const { featuredImage, title, published_at, description } = blog;
+  const { featuredImage, title, published_at, description, comments } = blog;
   if (!featuredImage || !title || !published_at || !description) return null;
 
   const dateLink = `/blog/${
@@ -76,12 +76,7 @@ const ArticlesCard = (blog) => {
           </Link>
         </Box>
         <Text>{trimString(description, 100)}</Text>
-        <CommentText
-          className="disqus-comment-count"
-          data-disqus-url={FRONTEND_URL + postLink + "#disqus_thread"}
-        >
-          {" "}
-        </CommentText>
+        <CommentText>{comments ? comments.length : 0} Komentar</CommentText>
       </VStack>
     </Box>
   );

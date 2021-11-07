@@ -49,7 +49,7 @@ const CommentText = styled.span`
 
 const ArticlesHorizontalCard = (blog) => {
   const { isLaptopDisplay } = useWindowSize();
-  const { featuredImage, title, published_at, description } = blog;
+  const { featuredImage, title, published_at, description, comments } = blog;
   if (!featuredImage || !title || !published_at || !description) return null;
 
   const dateLink = `/blog/${
@@ -78,12 +78,7 @@ const ArticlesHorizontalCard = (blog) => {
           </Link>
         </Box>
         <Text>{trimString(description, isLaptopDisplay ? 100 : 200)}</Text>
-        <CommentText
-          className="disqus-comment-count"
-          data-disqus-url={FRONTEND_URL + postLink + "#disqus_thread"}
-        >
-          {" "}
-        </CommentText>
+        <CommentText>{comments ? comments.length : 0} Komentar</CommentText>
       </VStack>
     </Box>
   );

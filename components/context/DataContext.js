@@ -3,6 +3,7 @@ import { BACKEND_URL } from "@/Utils/Constants";
 import axios from "axios";
 import { Heading } from "@chakra-ui/layout";
 import { AnimatePresence, motion } from "framer-motion";
+import { fetchData } from "@/Utils/Helper";
 
 const initialData = {
   about: null,
@@ -19,6 +20,12 @@ const initialData = {
 };
 
 const DataContext = createContext(initialData);
+
+const DEF_DELAY = 1000;
+
+function sleep(ms) {
+  return new Promise((resolve) => setTimeout(resolve, ms || DEF_DELAY));
+}
 
 export const DataProvider = ({ children }) => {
   const [landingPage, setLandingPage] = useState(null);
@@ -38,52 +45,83 @@ export const DataProvider = ({ children }) => {
   }, []);
 
   useEffect(() => {
-    if (progress >= 100) setLoading(false);
+    if (progress >= 100) {
+      setTimeout(() => {
+        setLoading(false);
+      }, 10);
+    }
   }, [progress]);
 
-  const fetchData = async (url) => {
-    try {
-      const promise = await axios.get(BACKEND_URL + url);
-      const data = await promise.data;
-      setProgress((prev) => prev + 20);
-      return [data, null];
-    } catch {
-      return [null, "Error"];
-    }
-  };
   const fetchLandingPage = async () => {
     const [data, error] = await fetchData("/landing-page");
     if (error) console.log(error);
+    let count = 0;
+    while (count < 20) {
+      await sleep(50);
+      setProgress((prev) => prev + 1);
+      count++;
+    }
     setLandingPage(data);
   };
 
   const fetchProjects = async () => {
     const [data, error] = await fetchData("/projects");
     if (error) console.log(error);
+    let count = 0;
+    while (count < 20) {
+      await sleep(50);
+      setProgress((prev) => prev + 1);
+      count++;
+    }
     setProjects(data);
   };
 
   const fetchTestimonials = async () => {
     const [data, error] = await fetchData("/testimonials");
     if (error) console.log(error);
+    let count = 0;
+    while (count < 20) {
+      await sleep(50);
+      setProgress((prev) => prev + 1);
+      count++;
+    }
     setTestimonials(data);
   };
 
   const fetchBlogs = async () => {
     const [data, error] = await fetchData("/blogs");
     if (error) console.log(error);
+    let count = 0;
+    while (count < 20) {
+      await sleep(50);
+      setProgress((prev) => prev + 1);
+      count++;
+    }
     setBlogs(data);
   };
 
   const fetchCategories = async () => {
     const [data, error] = await fetchData("/blog-categories");
     if (error) console.log(error);
+    let count = 0;
+    while (count < 20) {
+      await sleep(50);
+      setProgress((prev) => prev + 1);
+      count++;
+    }
     setCategories(data);
   };
 
   return (
     <DataContext.Provider
-      value={{ ...landingPage, projects, testimonials, blogs, categories }}
+      value={{
+        ...landingPage,
+        projects,
+        testimonials,
+        blogs,
+        setBlogs,
+        categories,
+      }}
     >
       <AnimatePresence>
         {loading ||

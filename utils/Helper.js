@@ -1,3 +1,6 @@
+import axios from "axios";
+import { BACKEND_URL } from "./Constants";
+
 export const isOnMobilePhoneFetch = () => {
   if (
     navigator.userAgent.match(/Android/i) ||
@@ -34,4 +37,14 @@ export const dateFormat = function dateFormat(date) {
     day: "numeric",
   };
   return new Date(date).toLocaleDateString("id-ID", options);
+};
+
+export const fetchData = async (url) => {
+  try {
+    const promise = await axios.get(BACKEND_URL + url);
+    const data = await promise.data;
+    return [data, null];
+  } catch (e) {
+    return [null, JSON.stringify(e)];
+  }
 };
