@@ -23,6 +23,12 @@ import { Textarea } from "@chakra-ui/textarea";
 import axios from "axios";
 import { useEffect, useState } from "react";
 import { v4 as uuidv4 } from "uuid";
+import TimeAgo from "javascript-time-ago";
+import en from "javascript-time-ago/locale/en.json";
+
+TimeAgo.addDefaultLocale(en);
+
+const timeAgo = new TimeAgo("en-US");
 
 const PostComment = ({ blogId, threadOf }) => {
   const [isAnonim, setIsAnonim] = useState(false);
@@ -142,7 +148,7 @@ function CommentsItem({ item, blogId, replyComment, setReplyComment }) {
           <Box display="flex" flexDir="column" gridGap="2px">
             <Text fontSize="14px">{item.authorName}</Text>
             <Text fontSize="13px" color="gray">
-              {dateFormat(new Date(item.created_at))}
+              {timeAgo.format(new Date(item.created_at), "twitter-now")}
             </Text>
           </Box>
           <Text fontSize="14px" whiteSpace="pre-wrap">
@@ -153,7 +159,7 @@ function CommentsItem({ item, blogId, replyComment, setReplyComment }) {
             size="xs"
             variant="ghost"
             onClick={() =>
-              setReplyComment((prev) => (prev === item.id ? 1 : item.id))
+              setReplyComment((prev) => (prev === item.id ? null : item.id))
             }
           >
             Balas
@@ -170,7 +176,7 @@ function CommentsItem({ item, blogId, replyComment, setReplyComment }) {
 }
 
 const Comments = ({ blogId, comments }) => {
-  const [replyComment, setReplyComment] = useState(1);
+  const [replyComment, setReplyComment] = useState(null);
   const [commentsSorted, setCommentsSorted] = useState(null);
 
   useEffect(() => {

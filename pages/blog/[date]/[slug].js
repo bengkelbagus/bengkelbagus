@@ -36,7 +36,7 @@ const PostSlug = () => {
         <Box display="flex" flexDir="column" mb="2rem">
           <VStack alignItems="flex-start">
             <Heading as="h1" size="2xl">
-              title
+              {blog.title}
             </Heading>
             <HStack
               width="100%"

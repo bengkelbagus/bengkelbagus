@@ -42,7 +42,11 @@ const PortofolioSection = () => {
       >
         {projects.map((data, index) => (
           <>
-            <Box minWidth="280px" flex="1" key={index}>
+            <Box
+              minWidth={isMobileDisplay ? "100%" : "480px"}
+              flex="1"
+              key={index}
+            >
               <Image boxSize="100%" src={data.cover.url} alt={index} />
             </Box>
           </>

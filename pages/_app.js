@@ -7,7 +7,7 @@ import "@fontsource/poppins/600.css";
 import "@fontsource/poppins/700.css";
 import { ChakraProvider, extendTheme } from "@chakra-ui/react";
 import Head from "next/head";
-import { DataProvider } from "components/context/DataContext";
+import { DataProvider } from "@/Components/context/DataContext";
 
 const theme = extendTheme({
   colors: {

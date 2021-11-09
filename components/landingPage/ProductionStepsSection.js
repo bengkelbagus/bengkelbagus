@@ -33,35 +33,51 @@ const ProductionStepsSection = () => {
             minH="350px"
             height="100%"
             key={index}
-            p="2rem"
+            position="relative"
             backgroundImage={data.productionImage.url}
-            backgroundBlendMode="overlay"
             backgroundSize="cover"
             backgroundRepeat="no-repeat"
-            backgroundColor="#222222dd"
           >
-            <VStack
+            <Box
+              width="100%"
               height="100%"
-              justifyContent="flex-end"
-              alignItems="flex-start"
-              color="white"
+              backgroundColor="blackAlpha.900"
+              opacity="0.6"
+              zIndex="0"
+            ></Box>
+            <Box
+              width="100%"
+              height="100%"
+              p="2rem"
+              position="absolute"
+              top="0"
+              left="0"
+              zIndex="1"
             >
               <VStack
-                minH="150px"
+                height="100%"
+                justifyContent="flex-end"
                 alignItems="flex-start"
-                justifyContent="flex-start"
+                color="white"
               >
-                <Heading as="h4" size="md">
-                  {data.title}
-                </Heading>
-                <Divider
-                  borderColor="yellow.400"
-                  borderWidth="2px"
-                  width="100px"
-                />
-                <Text>{data.description}</Text>
+                <VStack
+                  minH="150px"
+                  alignItems="flex-start"
+                  justifyContent="flex-start"
+                >
+                  <Heading as="h4" size="md">
+                    {data.title}
+                  </Heading>
+                  <Divider
+                    opacity="1"
+                    borderColor="yellow.400"
+                    borderWidth="2px"
+                    width="100px"
+                  />
+                  <Text>{data.description}</Text>
+                </VStack>
               </VStack>
-            </VStack>
+            </Box>
           </GridItem>
         ))}
       </Grid>
