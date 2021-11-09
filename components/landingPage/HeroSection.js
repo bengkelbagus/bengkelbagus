@@ -13,7 +13,7 @@ const HeroSection = () => {
   return (
     <Box
       minH={isTabletDisplay ? "80vh" : "60vh"}
-      backgroundImage={hero.image.url}
+      backgroundImage={hero.image && hero.image.url ? hero.image.url : ""}
       backgroundSize="cover"
       backgroundRepeat="no-repeat"
       color="white"
