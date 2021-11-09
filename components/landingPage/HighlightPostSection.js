@@ -10,13 +10,17 @@ const HighlightPostSection = () => {
   const { highlightNews } = useDataBackend();
   const { isLaptopDisplay } = useWindowSize();
   const blog = highlightNews ? highlightNews.blog : null;
+
+  if (!blog) return null;
+
   const { featuredImage, title, published_at, description } = blog;
+
+  if (!featuredImage || !title || !published_at || !description) return null;
+
   const dateLink = `/blog/${
     new Date(published_at).toISOString().split("T")[0]
   }`;
   const postLink = dateLink + `/${title.replace(" ", "-")}`;
-
-  if (!blog) return null;
 
   return (
     <Box
