@@ -5,6 +5,7 @@ import HighlightPostSection from "./HighlightPostSection";
 import LatestNewsSection from "./LatestNewsSection";
 import PortofolioSection from "./PortofolioSection";
 import ProductionStepsSection from "./ProductionStepsSection";
+import ServicesSection from "./ServicesSection";
 import TestimonialSection from "./TestimonialSection";
 
 const LandingPage = () => {
@@ -14,6 +15,7 @@ const LandingPage = () => {
       <AboutSection />
       <ProductionStepsSection />
       <PortofolioSection />
+      <ServicesSection />
       <HighlightPostSection />
       <TestimonialSection />
       <LatestNewsSection />

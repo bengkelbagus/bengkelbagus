@@ -39,10 +39,10 @@ const HighlightPostSection = () => {
         alignItems="center"
         gridGap="2rem"
       >
-        <Box flex="1" minWidth="100px">
+        <Box flex="1" minWidth="200px">
           <Image src={featuredImage.url} alt="highlight-pic" />
         </Box>
-        <VStack flex="1" minW="200px" alignItems="flex-start" gridGap="1rem">
+        <VStack flex="1" minW="300px" alignItems="flex-start" gridGap="1rem">
           <VStack alignItems="flex-start">
             <Heading as="h1" size="lg" color="black">
               {title}

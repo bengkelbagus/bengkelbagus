@@ -14,6 +14,7 @@ const initialData = {
   productionStep: [],
   testimonial: [],
   projects: [],
+  services: [],
   testimonials: [],
   blogs: [],
   categories: [],
@@ -30,6 +31,7 @@ function sleep(ms) {
 export const DataProvider = ({ children }) => {
   const [landingPage, setLandingPage] = useState(null);
   const [projects, setProjects] = useState(null);
+  const [services, setServices] = useState(null);
   const [testimonials, setTestimonials] = useState(null);
   const [blogs, setBlogs] = useState(null);
   const [categories, setCategories] = useState(null);
@@ -42,6 +44,7 @@ export const DataProvider = ({ children }) => {
     fetchTestimonials();
     fetchBlogs();
     fetchCategories();
+    fetchServices();
   }, []);
 
   useEffect(() => {
@@ -74,6 +77,18 @@ export const DataProvider = ({ children }) => {
       count++;
     }
     setProjects(data);
+  };
+
+  const fetchServices = async () => {
+    const [data, error] = await fetchData("/services");
+    if (error) console.log(error);
+    let count = 0;
+    while (count < 20) {
+      await sleep(50);
+      setProgress((prev) => prev + 1);
+      count++;
+    }
+    setServices(data);
   };
 
   const fetchTestimonials = async () => {
@@ -117,6 +132,7 @@ export const DataProvider = ({ children }) => {
       value={{
         ...landingPage,
         projects,
+        services,
         testimonials,
         blogs,
         setBlogs,
@@ -127,6 +143,7 @@ export const DataProvider = ({ children }) => {
         {loading ||
         !landingPage ||
         !projects ||
+        !services ||
         !testimonials ||
         !blogs ||
         !categories ? (
