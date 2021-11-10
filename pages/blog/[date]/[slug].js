@@ -1,7 +1,6 @@
 import Comments from "@/Components/blogPage/Comments";
 import { useDataBackend } from "@/Components/context/DataContext";
 import useWindowSize from "@/Components/hooks/UseWindowSize";
-import HelmetMetaData from "@/Components/reusables/HelmetMetadata";
 import NextShare from "@/Components/reusables/next-share/NextShare";
 import LayoutDefault from "@/Layout/Default";
 import { FRONTEND_URL } from "@/Utils/Constants";
@@ -26,13 +25,12 @@ const PostSlug = () => {
 
   if (!blog) return null;
   return (
-    <LayoutDefault title={slug + " | Bengkel Bagus"}>
-      <HelmetMetaData
-        title={blog.title}
-        image={blog.featuredImage.url}
-        description={blog.description}
-        currentUrl={FRONTEND_URL + asPath}
-      />
+    <LayoutDefault
+      title={blog.title + " | Bengkel Bagus"}
+      image={blog.featuredImage.url}
+      description={blog.description}
+      currentUrl={FRONTEND_URL + asPath}
+    >
       <Box
         minH="60vh"
         width={isTabletDisplay ? "80vw" : "60vw"}
