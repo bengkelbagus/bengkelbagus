@@ -1,9 +1,9 @@
 import Comments from "@/Components/blogPage/Comments";
 import { useDataBackend } from "@/Components/context/DataContext";
 import useWindowSize from "@/Components/hooks/UseWindowSize";
+import HelmetMetaData from "@/Components/reusables/HelmetMetadata";
 import NextShare from "@/Components/reusables/next-share/NextShare";
 import LayoutDefault from "@/Layout/Default";
-import DiscusComments from "@/Reusables/discus/comments";
 import { FRONTEND_URL } from "@/Utils/Constants";
 import { dateFormat } from "@/Utils/Helper";
 import { Image } from "@chakra-ui/image";
@@ -17,15 +17,22 @@ const PostSlug = () => {
   const { date, slug } = query;
   const { isTabletDisplay } = useWindowSize();
   const { blogs } = useDataBackend();
-  const blog = blogs.find(
-    ({ published_at, title }) =>
+  const blog = blogs.find(({ published_at, title }) => {
+    return (
       new Date(published_at).toISOString().split("T")[0] === date &&
-      title === slug.replace("-", " ")
-  );
+      slug === title.toLowerCase().replace(/[^a-zA-Z0-9]/g, "_")
+    );
+  });
 
   if (!blog) return null;
   return (
     <LayoutDefault title={slug + " | Bengkel Bagus"}>
+      <HelmetMetaData
+        title={blog.title}
+        image={blog.featuredImage.url}
+        description={blog.description}
+        currentUrl={FRONTEND_URL + asPath}
+      />
       <Box
         minH="60vh"
         width={isTabletDisplay ? "80vw" : "60vw"}
@@ -59,7 +66,9 @@ const PostSlug = () => {
           <Box backgroundColor="yellow.400" my="2rem">
             <Image width="100%" src={blog.featuredImage.url} alt="post-image" />
           </Box>
-          <ReactMarkdown>{blog.content}</ReactMarkdown>
+          <Box id="blog">
+            <ReactMarkdown>{blog.content}</ReactMarkdown>
+          </Box>
           <Box mt="2rem" alignSelf="center">
             <NextShare
               link={FRONTEND_URL + asPath}

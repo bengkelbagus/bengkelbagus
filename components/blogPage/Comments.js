@@ -198,7 +198,7 @@ const Comments = ({ blogId, comments }) => {
   if (!commentsSorted) return null;
 
   return (
-    <Box display="flex" flexDir="column" alignItems="flex-start">
+    <Box id="comments" display="flex" flexDir="column" alignItems="flex-start">
       <Heading as="h4" size="md" mb="1rem">
         Komentar <Text as="span">({comments.length})</Text>
       </Heading>

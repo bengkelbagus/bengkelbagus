@@ -53,7 +53,8 @@ const ArticlesCard = (blog) => {
   const dateLink = `/blog/${
     new Date(published_at).toISOString().split("T")[0]
   }`;
-  const postLink = dateLink + `/${title.replace(" ", "-")}`;
+  const postLink =
+    dateLink + `/${title.toLowerCase().replace(/[^a-zA-Z0-9]/g, "_")}`;
 
   return (
     <Box
@@ -76,7 +77,9 @@ const ArticlesCard = (blog) => {
           </Link>
         </Box>
         <Text>{trimString(description, 100)}</Text>
-        <CommentText>{comments ? comments.length : 0} Komentar</CommentText>
+        <Link href={postLink + "#comments"} passHref>
+          <CommentText>{comments ? comments.length : 0} Komentar</CommentText>
+        </Link>
       </VStack>
     </Box>
   );

@@ -55,7 +55,8 @@ const ArticlesHorizontalCard = (blog) => {
   const dateLink = `/blog/${
     new Date(published_at).toISOString().split("T")[0]
   }`;
-  const postLink = dateLink + `/${title.replace(" ", "-")}`;
+  const postLink =
+    dateLink + `/${title.toLowerCase().replace(/[^a-zA-Z0-9]/g, "_")}`;
 
   return (
     <Box

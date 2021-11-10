@@ -4,7 +4,7 @@ import { useDataBackend } from "@/Context/DataContext";
 const ServicesSection = () => {
   const { services } = useDataBackend();
 
-  if (!services) return null;
+  if (!services || services.length === 0) return null;
 
   return (
     <Box
@@ -25,20 +25,19 @@ const ServicesSection = () => {
           width="100%"
           gridGap="2rem"
         >
-          <VStack minWidth="180px" maxWidth="280px">
-            <Image
-              boxSize="148px"
-              src="/images/production-1.png"
-              alt="service-image"
-            />
-            <Heading as="h4" size="md">
-              Test
-            </Heading>
-            <Text textAlign="center">
-              Lorem ipsum dolor sit amet fesf sef sef sef sef sef sef sef sefes
-              seskeg rg grg drg drg drgdr grdgd rfes.
-            </Text>
-          </VStack>
+          {services.map((data, index) => (
+            <VStack key={index} minWidth="180px" maxWidth="280px">
+              <Image
+                boxSize="148px"
+                src={data.image.url}
+                alt={data.image.alternativeText}
+              />
+              <Heading as="h4" size="md">
+                {data.name}
+              </Heading>
+              <Text textAlign="center">{data.description}</Text>
+            </VStack>
+          ))}
         </Box>
       </Box>
     </Box>
