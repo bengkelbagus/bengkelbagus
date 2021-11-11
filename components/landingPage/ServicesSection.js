@@ -12,6 +12,7 @@ const ServicesSection = () => {
       display="flex"
       alignItems="center"
       justifyContent="center"
+      backgroundColor="#f7f7f7"
       p="10%"
     >
       <Box width="80%" display="flex" flexDirection="column" gridGap="4rem">
