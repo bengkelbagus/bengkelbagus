@@ -35,7 +35,9 @@ const TestimonialSection = () => {
         mx="auto"
         mt="4rem"
         gridGap="4rem"
-        gridTemplateColumns={isTabletDisplay ? "1fr" : "repeat(3, 1fr)"}
+        gridTemplateColumns={
+          isTabletDisplay ? "1fr" : "repeat(auto-fit, minmax(200px, 1fr))"
+        }
       >
         {testimonials.slice(0, 3).map((data, index) => (
           <Box
@@ -47,7 +49,9 @@ const TestimonialSection = () => {
             color="white"
             key={index}
           >
-            <Text mb="4rem">{data.caption}</Text>
+            <Text mb="4rem" textAlign="center">
+              {data.caption}
+            </Text>
             <Box
               width="80%"
               position="absolute"

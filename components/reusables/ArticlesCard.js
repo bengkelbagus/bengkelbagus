@@ -9,10 +9,16 @@ const ImageContainer = styled.div`
   background-color: #222;
   background-image: url(${(prop) => prop.backgroundImage});
   background-size: cover;
+  background-position: center;
   background-repeat: no-repeat;
   width: 100%;
   cursor: pointer;
   aspect-ratio: 1;
+  transition: transform 0.5s ease;
+
+  &:hover {
+    transform: scale(1.2);
+  }
 `;
 
 const Title = styled.h4`
@@ -65,7 +71,9 @@ const ArticlesCard = (blog) => {
       w="100%"
     >
       <Link href={FRONTEND_URL + postLink} passHref>
-        <ImageContainer backgroundImage={featuredImage.url}></ImageContainer>
+        <Box width="100%" overflow="hidden">
+          <ImageContainer backgroundImage={featuredImage.url}></ImageContainer>
+        </Box>
       </Link>
       <VStack alignItems="flex-start">
         <Box gridGap="5px">

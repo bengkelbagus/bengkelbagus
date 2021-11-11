@@ -1,7 +1,20 @@
 import { BACKEND_URL } from "@/Utils/Constants";
 import { Box, HStack, Text, Image } from "@chakra-ui/react";
+import styled from "@emotion/styled";
 import Link from "next/link";
 import { useEffect, useState } from "react";
+
+const SocMedContainer = styled.div`
+  cursor: pointer;
+  border-width: 2px;
+  border-color: transparent;
+  border-radius: 50%;
+  transition: border-color 0.5s ease;
+
+  &:hover {
+    border-color: #fff;
+  }
+`;
 
 const SocialMedia = () => {
   const [socialMedia, setSocialMedia] = useState([]);
@@ -22,13 +35,13 @@ const SocialMedia = () => {
       {socialMedia.length !== 0 &&
         socialMedia.map((data, index) => (
           <Link key={index} scroll={false} href={data.url} passHref>
-            <Box cursor="pointer">
+            <SocMedContainer>
               <Image
                 boxSize="42px"
                 src={`/images/${data.name}-icon.svg`}
                 alt={data.name}
               />
-            </Box>
+            </SocMedContainer>
           </Link>
         ))}
     </HStack>

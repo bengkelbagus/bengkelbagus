@@ -15,18 +15,21 @@ const ServicesSection = () => {
       p="10%"
     >
       <Box width="80%" display="flex" flexDirection="column" gridGap="4rem">
-        <Heading color="yellow.400" textAlign="center">
-          Layanan Kami
-        </Heading>
+        <VStack>
+          <Heading as="h1" size="lg" color="yellow.400" fontWeight="light">
+            Special Offer
+          </Heading>
+          <Heading as="h1" size="xl">
+            Our Best Services
+          </Heading>
+        </VStack>
         <Box
-          display="flex"
-          justifyContent="space-around"
-          flexWrap="wrap"
+          display="grid"
+          gridTemplateColumns="repeat(auto-fit, minmax(240px, 1fr))"
           width="100%"
-          gridGap="2rem"
         >
           {services.map((data, index) => (
-            <VStack key={index} minWidth="180px" maxWidth="280px">
+            <VStack key={index} m="10%">
               <Image
                 boxSize="148px"
                 src={data.image.url}

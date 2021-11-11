@@ -13,9 +13,9 @@ const LandingPage = () => {
     <Box minH="100vh">
       <HeroSection />
       <AboutSection />
+      <ServicesSection />
       <ProductionStepsSection />
       <PortofolioSection />
-      <ServicesSection />
       <HighlightPostSection />
       <TestimonialSection />
       <LatestNewsSection />

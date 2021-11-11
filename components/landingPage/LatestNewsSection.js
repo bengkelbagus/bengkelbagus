@@ -1,9 +1,11 @@
 import ArticlesCard from "@/Reusables/ArticlesCard";
-import { Box, Divider, Heading, HStack } from "@chakra-ui/layout";
+import { Box, Divider, Grid, Heading, HStack } from "@chakra-ui/layout";
 import { useDataBackend } from "components/context/DataContext";
+import useWindowSize from "../hooks/UseWindowSize";
 
 const LatestNewsSection = () => {
   const { blogs } = useDataBackend();
+  const { isMobileDisplay } = useWindowSize();
 
   if (blogs.length === 0) return null;
 
@@ -23,19 +25,20 @@ const LatestNewsSection = () => {
         Latest News
       </Heading>
       <Divider borderColor="yellow.400" borderWidth="2px" width="150px" />
-      <HStack
+      <Grid
         width="100%"
         mt="3rem"
-        overflowX="auto"
-        gridGap="1rem"
-        alignItems="flex-start"
+        gridGap="2rem"
+        gridTemplateColumns={
+          isMobileDisplay ? "1fr" : "repeat(auto-fit, minmax(260px, 1fr))"
+        }
       >
         {blogs.slice(0, 3).map((data, index) => (
-          <Box key={index} minWidth="240px" maxWidth="240px">
+          <Box key={index} m="1rem auto" minWidth="240px">
             <ArticlesCard {...data} />
           </Box>
         ))}
-      </HStack>
+      </Grid>
     </Box>
   );
 };

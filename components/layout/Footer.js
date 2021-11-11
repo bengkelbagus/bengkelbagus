@@ -4,7 +4,7 @@ import SocialMedia from "../reusables/SocialMedia";
 const Footer = () => {
   return (
     <Box
-      backgroundColor="blackAlpha.900"
+      backgroundColor="#000"
       p="2%"
       display="flex"
       flexDir="column"
