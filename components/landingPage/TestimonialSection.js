@@ -6,6 +6,7 @@ const TestimonialSection = () => {
   const { testimonials } = useDataBackend();
   const { isTabletDisplay, isMobileDisplay } = useWindowSize();
 
+  console.log(testimonials);
   if (testimonials.length === 0) return null;
   return (
     <Box
@@ -48,6 +49,7 @@ const TestimonialSection = () => {
             p="2rem"
             color="white"
             key={index}
+            mb={isTabletDisplay ? "128px" : ""}
           >
             <Text mb="4rem" textAlign="center">
               {data.caption}
@@ -55,18 +57,39 @@ const TestimonialSection = () => {
             <Box
               width="80%"
               position="absolute"
-              backgroundColor="yellow.400"
               color="black"
               p="1rem"
-              bottom="-2rem"
+              bottom="-8rem"
               left="50%"
               transform="translateX(-50%)"
               textAlign="center"
+              display="flex"
+              flexDir="column"
+              alignItems="center"
             >
-              <Heading as="h4" size="sm">
+              <Box
+                width="128px"
+                height="128px"
+                borderRadius="full"
+                backgroundImage={data.client.image ? data.client.image.url : ""}
+                backgroundSize="cover"
+                backgroundRepeat="no-repeat"
+                backgroundColor="yellow.400"
+                mb="1rem"
+                display="flex"
+                alignItems="center"
+                justifyContent="center"
+              >
+                {!data.client.image && (
+                  <Text fontSize="32px" fontWeight="bold">
+                    {data.client.name.split(" ").map((data) => data[0])}
+                  </Text>
+                )}
+              </Box>
+              <Heading as="h4" size="sm" color="white">
                 {data.client.name}
               </Heading>
-              <Text>{data.client.company}</Text>
+              <Text color="yellow.400">{data.client.company}</Text>
             </Box>
           </Box>
         ))}
