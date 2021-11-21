@@ -210,7 +210,7 @@ const Comments = ({ blogId, comments }) => {
             <CommentsItem
               item={data}
               key={index}
-              blogId={data.id}
+              blogId={blogId}
               replyComment={replyComment}
               setReplyComment={setReplyComment}
             />
