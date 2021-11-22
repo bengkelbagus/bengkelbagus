@@ -1,12 +1,5 @@
 import { BACKEND_URL } from "@/Utils/Constants";
-import {
-  Box,
-  HStack,
-  Text,
-  Image,
-  VStack,
-  useClipboard,
-} from "@chakra-ui/react";
+import { HStack, Text, Image, VStack } from "@chakra-ui/react";
 import styled from "@emotion/styled";
 import Link from "next/link";
 import { useEffect, useState } from "react";
@@ -32,7 +25,6 @@ const SocialMedia = () => {
   const [socialMedia, setSocialMedia] = useState([]);
   const [phoneNumber, setPhoneNumber] = useState(null);
   const [emailData, setEmailData] = useState(null);
-  const { hasCopied, onCopy } = useClipboard(phoneNumber);
 
   useEffect(() => {
     fetchApi();
@@ -50,8 +42,6 @@ const SocialMedia = () => {
       })
       .catch((error) => error);
   };
-
-  console.log(hasCopied);
 
   return (
     <VStack>
