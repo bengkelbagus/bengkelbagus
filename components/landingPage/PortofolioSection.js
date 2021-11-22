@@ -1,23 +1,12 @@
 import useWindowSize from "@/Hooks/UseWindowSize";
 import { useDisclosure } from "@chakra-ui/hooks";
 import { Image } from "@chakra-ui/image";
-import {
-  AspectRatio,
-  Box,
-  Divider,
-  Grid,
-  GridItem,
-  Heading,
-  Text,
-  VStack,
-} from "@chakra-ui/layout";
+import { Box, Divider, Heading, Text, VStack } from "@chakra-ui/layout";
 import {
   Modal,
   ModalBody,
   ModalCloseButton,
   ModalContent,
-  ModalFooter,
-  ModalHeader,
   ModalOverlay,
 } from "@chakra-ui/modal";
 import { useDataBackend } from "@/Context/DataContext";
@@ -32,8 +21,6 @@ const PortofolioSection = () => {
   const { isOpen, onOpen, onClose } = useDisclosure();
 
   if (projects.length === 0) return null;
-
-  console.log(isOpen);
 
   return (
     <Box id="portofolio" minH="40vh" backgroundColor="blackAlpha.900">

@@ -3,6 +3,7 @@ import { Box } from "@chakra-ui/react";
 import { AnimatePresence, motion } from "framer-motion";
 import Footer from "./Footer";
 import Navbar from "./Navbar";
+import WhatsappRedirect from "@/Components/reusables/WhatsappRedirect";
 import useWindowSize from "@/Hooks/UseWindowSize";
 import { useRef, useState } from "react";
 import useEventListener from "@/Hooks/UseEventListener";
@@ -83,6 +84,7 @@ const LayoutDefault = ({
       >
         <Navbar />
       </Box>
+      <WhatsappRedirect />
       <AnimatePresence
         exitBeforeEnter
         onExitComplete={() => window.scrollTo(0, 0)}
